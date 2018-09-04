@@ -6,6 +6,7 @@ author: Kwanghee Choi
 categories: probability_primer
 ---
 
+[monk-prob-primer-01.pdf](/assets/pdfs/monk-prob-primer-01.pdf)
 <div width="100%" style="padding-bottom:130%; display:block; position: relative;">
-<embed src="/assets/pdfs/monk-prob-primer-01.pdf" width="100%" height="100%" style="position:absolute;"/>
+<object data="/assets/pdfs/monk-prob-primer-01.pdf" type="application/pdf" width="100%" height="100%" style="position:absolute;"/>
 </div>
