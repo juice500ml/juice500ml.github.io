@@ -35,11 +35,11 @@ future: true
 jekyll-archives:
   enabled:
     - categories
-    - tags
+#    - tags
   layout: 'archive'
   permalinks:
     category: '/category/:name/'
-    tag: '/tag/:name/'
+#    tag: '/tag/:name/'
 
 # Disqus comments
 # disqus_shortname: bencentra
@@ -54,6 +54,9 @@ descriptions:
 
   - cat: introduction_to_probability
     desc: "Notes took while listening to MIT's probability lectures."
+
+  - cat: database_systems_concepts
+    desc: "Notes took while reading Database Systems Concepts."
 
 # Social icons and sharing options
 #

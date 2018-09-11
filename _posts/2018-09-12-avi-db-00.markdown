@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Database Systems Concepts 00"
+date:   2018-09-12 00:43:00
+author: Kwanghee Choi
+categories: database_systems_concepts
+---
+
+**Disclaimer**
+
+These are notes taken while reading the book Database Systems Concepts (6th ed.) by Avi Silberschatz, Henry F. Korth, and S. Sudarshan. Notes and diagrams inside the notes are heavily consulted from this book.
+- [Database Systems Concepts 6th ed. Companion Website](http://db-book.com/)
+- [Book at amazon.com](https://www.amazon.com/Database-Concepts-Abraham-Silberschatz-Professor/dp/0073523321/ref=sr_1_sc_1?ie=UTF8&qid=1536680864&sr=8-1-spell&keywords=database+sysetem+concepts+6th)
+
