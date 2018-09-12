@@ -58,6 +58,9 @@ descriptions:
   - cat: database_systems_concepts
     desc: "Notes took while reading Database Systems Concepts."
 
+  - cat: intro_to_database_systems
+    desc: "Notes took while listening to CMU's database systems lectures."
+
 # Social icons and sharing options
 #
 # Social settings are used in two places:
