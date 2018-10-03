@@ -34,6 +34,7 @@ permalink: /posts/
   padding-right: 10px;
 }
 </style>
+
 <script>
 function collapsible_onclick(me) {
   me.classList.toggle("active");
@@ -44,6 +45,19 @@ function collapsible_onclick(me) {
     content.style.maxHeight = content.scrollHeight + "px";
   } 
 };
+
+window.onload = function() {
+var chosen_category = window.location.hash.slice(1);
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  if (coll[i].id === chosen_category) {
+    collapsible_onclick(coll[i]);
+    coll[i].scrollIntoView();
+  }
+}
+}
 </script>
 
 {% for category in site.categories %}
