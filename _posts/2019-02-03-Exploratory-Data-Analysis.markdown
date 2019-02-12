@@ -47,7 +47,43 @@ This is a summary of a book [Exploratory Data Analysis](https://www.amazon.com/E
 # 3. Easy re-expression
 - If the way the numbers are collected does not ake them easy to grasp, we should change them, preserving as much information as we can use.
 - Re-expressions preserving the ordering: log, sqrt, negative exponentials($-1/x, -1/x^2, -1/x^{1/2}, ...$)
-- ![](https://juice500ml.github.io/assets/img/914f0d07-0039-4d73-8a4c-73e2f6e60ce2.jpeg)
-- ![](https://juice500ml.github.io/assets/img/384fbb92-45ad-4e52-a9b5-3979c5396150.jpeg)
+- ![re_expression_on_x](https://juice500ml.github.io/assets/img/914f0d07-0039-4d73-8a4c-73e2f6e60ce2.jpeg)
+- ![re_expression_on_logx](https://juice500ml.github.io/assets/img/384fbb92-45ad-4e52-a9b5-3979c5396150.jpeg)
+- If one expression is straight, those above it are hollow upward, those below it are hollow downward.
 - Can re-express not only the y-axis, but also the x-axis. Any axis can be re-expressed.
 
+# 4. Effective comparison, including well-chosen expression
+- Choose a good re-expression based on the following
+	- Does it show symmetry within each batches well?
+	- Does it show agreement among each batches well?
+	- ![symmetry_and_agreement](https://juice500ml.github.io/assets/img/b73d3956-bae6-4c52-9ab4-16c280f9b692.jpeg)
+- Residual = Given value - Summary value (ex. median)
+- The meaning of logarithms
+	- Reduces multiplications into additions.
+	- log residuals are, in fact, ratios
+
+# 5. Plots of relationship
+- Given = Fit + Residual
+	- Fit: An incomplete, approximate description. Part of the information. (ex. $y=ax+b$)
+	- Residual: Deviation from the current description. Additional information for each point.
+	- How it deviates from the description (model) = How it behaves out of the ordinary (generally)
+- Using multiple linear models paired with re-expressions
+	- ![linear_growth_model](https://juice500ml.github.io/assets/img/b92e7179-79a6-4113-b902-912756084dc1.jpeg)
+	- ![exponential_growth_model](https://juice500ml.github.io/assets/img/4518056a-dcdf-49c9-8cc0-63a3c8d7fe24.jpeg)
+	- The reason behind choosing these models to make a successful approximation, is that we already know these are population data, so we can apply demographic theory, or in other words, domain knowledge for that specific data.
+- Indications for re-expressions
+	- ![crowding](https://juice500ml.github.io/assets/img/1f0067ca-811c-4147-9d88-6e64954ce3b0.jpeg)
+
+# 6. Straightening out plots
+- Straightening by re-expressing x is not the same as re-expressing y.
+- Just because re-expression makes things quite straight, it doesn’t say that it is a new law.
+
+# 7. Smoothing sequences
+- Given data = Smooth + Rough
+	- Smooth: Smoothing models such as running medians or moving average. Connected points or smooth curve.
+	- Rough: Seperate points.
+- Any kind of smoothing methods (or predictive models) has some sort of judgement whatsoever. Eye-smoothing is the maximal amount of judgement, and minimal amount of arithmetic.
+- Re-expression does alter the smoothness, but not very much.
+
+# 8. Parallel and wandering schematic plots
+- 
