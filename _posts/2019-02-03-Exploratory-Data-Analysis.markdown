@@ -7,7 +7,7 @@ categories: datascience
 ---
 
 # Overview
-This is a summary of a book [Exploratory Data Analysis](https://www.amazon.com/Exploratory-Data-Analysis-John-Tukey/dp/0201076160) by [John W. Tukey](https://en.wikipedia.org/wiki/John_Tukey). When the book is written in the 70s, computing power (i.e. graph software, or data-related software) was not available for the public, let alone for researchers and analysts. Thus, the majority of the contents were dedicated to pen-and-paper methods, which I am going to omit throughout the whole summary. With that said, I believe the key concepts and ideas for analyzing and visualizing data haven’t change much since then, as visual perceptions of human beings should’ve not undergo dramatic changes. Therefore, it should be useful for this summary to concentrate more on the conceptual basis, rather than the specific techniques for analysis.
+This is a summary with of a book [Exploratory Data Analysis](https://www.amazon.com/Exploratory-Data-Analysis-John-Tukey/dp/0201076160) by [John W. Tukey](https://en.wikipedia.org/wiki/John_Tukey), with additional comments from myself. When the book is written in the 70s, computing power (i.e. graph software, or data-related software) was not available for the public, let alone for researchers and analysts. Thus, the majority of the contents were dedicated to pen-and-paper methods, which I am going to omit throughout the whole summary. With that said, I believe the key concepts and ideas for analyzing and visualizing data haven’t change much since then, as visual perceptions of human beings should’ve not undergo dramatic changes. Therefore, it should be useful for this summary to concentrate more on the conceptual basis, rather than the specific techniques for analysis.
 
 # Preface
 - It is important to understand *what you can do* before you learn to measure *how well you seem to have done it*.
@@ -86,4 +86,27 @@ This is a summary of a book [Exploratory Data Analysis](https://www.amazon.com/E
 - Re-expression does alter the smoothness, but not very much.
 
 # 8. Parallel and wandering schematic plots
-- 
+- Median of n shows long-term tendency of length n.
+	- We expect to smooth x whenever we smooth y.
+	- ![median_of_x_and_y](https://juice500ml.github.io/assets/img/aa0eaa05-e075-4f11-9e2a-815a2b6bbba1.jpeg)
+	- Median of both x and y to take the influence of both x and y into account.
+- Use h-spread or hinge to model the residual iteslf. (How much it deviate from the *smooth* model? The *roughness* of the data.)
+- Representative value & Spread = Average (or median) & Quartile = Box & Whisker
+
+# 9. Delineations of batches of points
+- Delineations: Additional traces to model residuals efficiently.
+- Failing to show residuals is an essential characteristic of any smooth model.
+
+# 10. Using two-way analyses
+- One kind of response, two kinds of circumstances
+	- ![two_way_residuals](https://juice500ml.github.io/assets/img/63ac31bf-a33a-4073-8e3f-845c394a29f6.jpeg)
+	- data = common + row effect + column effect + residual
+	- common (global median) + row effect (row median) + column effect (column median) = median surface
+- row + col + 1 fit
+	- Modeling with medians
+	- $ all + row + col + k \frac {row \times col} {all} $
+	- Expression between 1st and 2nd order Taylor expansion
+		- 1st (linear combination): $ax + by + c$
+		- 2nd: $ax^2 + bx + cy^2 + dy + exy + f$
+	- $xy$ term: Covariate term between $x$ and $y$. Simplest and probably most effective nonlinearity.
+	- $x^2$, $y^2$ term: Have to remove (or minimize) with re-expression
