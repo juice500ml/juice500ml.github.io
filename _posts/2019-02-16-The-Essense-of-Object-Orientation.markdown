@@ -41,7 +41,7 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 - Object should be...
 	- Open: Friendly enough to collaborate.
 	- Autonomous: with own principles and control.
-	- To ensure openness and autonomy, object is binded with behavior (object behaving to collaborate) and state (data needed for autonomous behavior).
+	- To ensure openness and autonomy, object is binded with behavior (the way how object can collaborate with other objects) and state (data needed for behaviors).
 	- ex) Barista has to be friendly enough to give choices to customers (message-recievable), but customers doesn’t get to dictate how barista brews coffee (method encapsulation).
 		- Open: Customer (sender) sends a message (make a request) to the barista (reciever). Barista recieves a message from the customer (and prepare to make a response).
 		- Autonomous: Customer can know *what* barista is brewing, but does not have to know *how*.
