@@ -38,3 +38,11 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 		- Roles do not depend on realization of each objects, hence substitutable. (Customer doesn’t care who gets the coffee.)
 		- How to take responsibility is autonomously selected. Same request, different ways of response: polymorphism. (Barista brews coffee on his/her own terms.)
 		- One object can have mutiple roles. (Cashier could also brew coffee.)
+- Object should be...
+	- Open: Friendly enough to collaborate.
+	- Autonomous: with own principles and control.
+	- To ensure openness and autonomy, object is binded with behavior (object behaving to collaborate) and state (data needed for autonomous behavior).
+	- ex) Barista has to be friendly enough to give choices to customers (message-recievable), but customers doesn’t get to dictate how barista brews coffee (method encapsulation).
+		- Open: Customer (sender) sends a message (make a request) to the barista (reciever). Barista recieves a message from the customer (and prepare to make a response).
+		- Autonomous: Customer can know *what* barista is brewing, but does not have to know *how*.
+- OO is not about classes. It is about autonomous objects messaging each other. It is about maintaining collaborations between roles with responsibilities. Classes are just tools to implement those.
