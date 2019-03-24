@@ -23,11 +23,11 @@ This is a summary of the book [Bandit Algorithms for Website Optimization](https
 	- Abrupt transititon
 	- Wastes resources exploring inferior options
 
-# 3. The epsilon-Greedy Algorithm
+# 3. The $\epsilon$-Greedy Algorithm
 - Tries to be fair to the two opposite goals of exploration & exploitation
 - ![The epsilon-Greedy arm selection process](https://juice500ml.github.io/assets/img/1df11441-9010-4a2d-8451-7d32446e69ab.jpeg)
-- If epsilon = 0: Pure exploitation, epsilon = 1: Pure exploration
-- Problem of fixed epsilon
+- If $\epsilon = 0$: Pure exploitation, $\epsilon = 1$: Pure exploration
+- Problem of fixed $\epsilon$
 	- May need more exploration at the start, may need more exploitation after some time.
 	- Explores arms completely at random without any concern about their merits.
 - Computing average $A_n$ of rewards $r_1, r_2, ..., r_n$ online
@@ -46,7 +46,7 @@ This is a summary of the book [Bandit Algorithms for Website Optimization](https
 	- Tracking the cumulative reward at each point in time, to look at the bigger picture of the lifetime performance.
 
 # 5. The Softmax Algorithm
-- Problem of fixed epsilon revisited
+- Problem of fixed $\epsilon$ revisited
 	- If the difference in rewards between two arms is small, more exploration is needed, and vice versa.
 	- Never get past the intrinsic errors caused by the purely random exploration strategy.
 - Set the probability of choosing arm $A$ with accumulative reward $r_A$ as ...
@@ -68,8 +68,8 @@ This is a summary of the book [Bandit Algorithms for Website Optimization](https
 	- Cold start is prevented by $b_i=\infty$
 	- UCBs are explicitly curious algorithms. Curiousness are implemented with bonus $b_i$, where $b_i$ gets bigger when $n_i$ is too small. So, we will occasionally visit the worst of the arms.
 - Comparing bandit algorithms side-by-side
-	- UCB1 is much noisier than epsilon-Greedy or Softmax.
-	- epsilon-Greedy doesn’t converge as quickly as Softmax.
+	- UCB1 is much noisier than $\epsilon$-Greedy or Softmax.
+	- $\epsilon$-Greedy doesn’t converge as quickly as Softmax.
 	- UCB1 takes a while to catch up with Softmax.
 	- UCB1 finds the best arm quickly, but the backpedaling it does causes it to underpreform the Softmax.
 
