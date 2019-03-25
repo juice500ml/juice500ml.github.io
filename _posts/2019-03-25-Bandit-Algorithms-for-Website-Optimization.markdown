@@ -13,7 +13,7 @@ This is a summary of the book [Bandit Algorithms for Website Optimization](https
 - Need to balance experimentation (exploration, learning new ideas, gathering data) with profit-maximization (exploitation, taking advantage of the best of old ideas, acting on that data).
 
 # 2. Why Use Multiarmed Bandit Algorithms?
-- Example measurable achivements: Traffic, Conversions, Sales, CTRs
+- Examples of measurable achievements: Traffic, Conversions, Sales, CTRs
 - Reward: Measure of success
 - Arms: List of potential changes
 - Explaining standard A/B testing as an exploration - exploitation tradeoff
