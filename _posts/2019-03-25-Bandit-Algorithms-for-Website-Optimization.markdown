@@ -20,7 +20,7 @@ This is a summary of the book [Bandit Algorithms for Website Optimization](https
 	- Short period of pure exploration (Assigning equal numbers of users to A/B)
 	- Long period of pure exploitation (Send all of the users to successful option)
 - Why A/B testing might be a bad strategy?
-	- Abrupt transititon
+	- Abrupt transition
 	- Wastes resources exploring inferior options
 
 # 3. The $\epsilon$-Greedy Algorithm
