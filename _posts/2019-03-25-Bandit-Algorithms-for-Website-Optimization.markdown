@@ -37,7 +37,7 @@ This is a summary of the book [Bandit Algorithms for Website Optimization](https
 # 4. Debugging Bandit Algorithms
 - Bandit algorithms are not black-box functions.
 - Bandit algorithms have to actively select which data it should acquire (Active Learning) and analyze that data at real time (Online Learning).
-- Bandit data and bandit analysis are inseperable. "Feedback cycle."
+- Bandit data and bandit analysis are inseparable. "Feedback cycle."
 - ![Feedback cycle](https://juice500ml.github.io/assets/img/9933a533-827f-44f2-8fc1-1099a9a8c4d7.jpeg)
 - Use Monte Carlo simulation to provide simulated data in real-time.
 - Analyzing results
@@ -62,7 +62,7 @@ This is a summary of the book [Bandit Algorithms for Website Optimization](https
 - UCBs avoid being gullible by keeping track of confidence in assessments of the estimated values of all the arms.
 - UCBs doesn’t use randomness.
 - UCBs doesn’t have any free parameters.
-- UCB1 (one of the variants of UCBs) chooses arm $i$ with accumulative rewards $r_i$, bonus $b_i$, and number of times $n_i$ choosing the arm $i$ as ...
+- UCB1 (one of the variants of UCBs) chooses arm $i$ with accumulative rewards $r_i$, bonus $b_i$, and number of times $n_i$ as ...
 	- $i = \underset{i} {argmax} (r_i + b_i)$
 	- $b_i = \sqrt{ \dfrac{2 \ln (\sum_j {n_j})} {n_i} }$ where $n_i > 0$ and $b_i=\infty$ where $n_i = 0$.
 	- Cold start is prevented by $b_i=\infty$
@@ -71,7 +71,7 @@ This is a summary of the book [Bandit Algorithms for Website Optimization](https
 	- UCB1 is much noisier than $\epsilon$-Greedy or Softmax.
 	- $\epsilon$-Greedy doesn’t converge as quickly as Softmax.
 	- UCB1 takes a while to catch up with Softmax.
-	- UCB1 finds the best arm quickly, but the backpedaling it does causes it to underpreform the Softmax.
+	- UCB1 finds the best arm quickly, but the backpedaling it does causes it to underperform the Softmax.
 
 # 7. Bandits in the Real World: Complexity and Complications
 - A/A Testing
