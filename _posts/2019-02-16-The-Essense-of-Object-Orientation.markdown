@@ -9,7 +9,7 @@ categories: software_design
 # Overview & Disclaimer
 This is a summary of the book [The Essense of Object-Orientation: Roles, Responsibilites, and Collaborations (객체지향의 사실과 오해: 역할, 책임, 협력 관점에서 본 객체지향)](http://wikibook.co.kr/object-orientation/). Views of this book are well-know to be both surprisingly deep and refreshing, and happily for me, quite kind for beginners like myself. Unfortunately, it was originally written in Korean, and there is seemingly no translation available in English. That is the reason why I’m trying to summarize this book in English, as clearly as possible, hoping a much bigger audience can cherish this book and the ideas from it. But keep in mind that, as myself is far from being a professional to this subject, this summary may contain ambiguous, or potentially hazardous ideas and expressions. Special thanks to [Jisoo Kim](https://blog.jisoo.net), who recommended me this book.
 
-# 0. Forwords
+# 0. Foreword
 - The concept of *object-orientation* brings a lot of controversy in software communities, despite the fact that the concept had been widely used for decades. This phenomena tells us that there is no unified definition, or realization of the concept.
 - That said, few of the possible ideas:
 	- OO is *object* oriented, not *class* or *inheritance* oriented.
@@ -37,7 +37,7 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 	- People (objects) are granted with roles to collaborate. Roles implicitly involves responsibilities.
 		- Roles do not depend on realization of each objects, hence substitutable. (Customer doesn’t care who gets the coffee.)
 		- How to take responsibility is autonomously selected. Same request, different choice of response: polymorphism. (Barista brews coffee on his/her own terms. State-dependent behavior difference, or overidden behavior.)
-		- One object can have mutiple roles. (Cashier could also brew coffee.)
+		- One object can have multiple roles. (Cashier could also brew coffee. Single responsibility, but may have multiple roles depending on collaborative situations.)
 - Object should be...
 	- Open: Friendly enough to collaborate. Least astonishment.
 	- Autonomous: with own principles and control.
@@ -52,10 +52,8 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 - Alice in Wonderland analogy
 	- Alice changes her height by eating various magical food, to achieve something, like go through a small door, or eat a large cake.
 - Everything is an object if it is...
-	- Human-tractable
-	- Seperable to other objects
-	- Can determine the time of creation
-	- Perceivable as a single independent unit
+	- Perceivable (human-tractable) as a single independent (seperable to other objects) unit
+	- Can determine the time of creation (instantiation)
 - Object
 	- Definition: Identifiable stuff. Could be real or abstract.
 	- Object contains state, behavior, and identifier.
@@ -65,16 +63,17 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 			- Result is dependent of the order of behaviors.
 		- No matter what state is in, Alice is uniquely indentifiable. (No matter how tall Alice is, Alice is Alice.)
 - State
-	- Definition: State is total information that the object has in a given time.
+	- Definition: State is the total information that the object has in a given time.
 	 -State consists of property (static) and property value (dynamic). Property can be attribute (value) or link (instance of correlation between other object).
 	- Values (number, string, datetime, ...) are not objects, as they are not uniquely identifiable. But values provides ways to express the state of an object.
 	- State is an abstraction of all the previous behaviors to reduce the complexities of the real-world.
 	- Object has, and should be on full control unto its own state, hence the autonomy. State and behavior are bind to one unit: an object.
 - Behavior
 	- Definition: Doing stuff to respond to incoming messages.
-	- Behavior changes state (side-effect), and behavior depends on state.
-		- Behavior has two kinds of side-effect: own state change (changing the property value), and message request to other object (via link).
-		- Object can change its state, or give out responses.
+	- Behavior changes state (side effect), and behavior depends on state.
+		- Behavior has two kinds of side effect: own state change (changing the property value), and message request to other object (via link).
+		- Every meaningful statement has a side effect.
+		- Object can change its state (side effect inside the object), or give out responses (side effect outside the object).
 	- Behavior is the only way for an object to participate in collaborations.
 	- State encapsulation
 		- Only behaviors are visible, states are invisible (from the outside). The only way to manipulate states is via behaviors.
@@ -83,12 +82,12 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 	- Object (reference object, entity) vs. Value (value object)
 	- Identifiability
 		- Object is uniquely identifiable. == Object has a specific property (identifier) that makes itself distinguishable to other objects.
-		- Value is not uniquely identifiable. == Value does not have an identifier.
+		- Value is not uniquely identifiable. == Value does not need an identifier.
 	- Mutability
-		- Value models unchanging amounts. Its state never changes. (Immutable state) Therefore, *equality* depends on state of each values.
+		- Value models unchanging amounts. Its state never changes. (Immutable state) Therefore, *equality* depends on the state of each values.
 		- State encompasses changing state depending on time. (Mutable state) Therefore, two objects are *identical* if identifier is the same.
 - Object as a machine
 	- *Query* the state of the object, and *command* to change the state of the object. No other interface to interact with the object.
-- Collaboration decides what behavior (or, responsibility) is needed. Behavior decides what state to manage.
+- Collaboration decides what behavior (in other words, role and responsibility while collaborating) is needed. What state to manage is decided after the behavior is set.
 - Real-world objects are passive. Software objects are active. They can do much more stuff than real-world objects. They acts as if they are live beings. (Antropomorphism)
 - Real-world objects are just metaphors for software objects, minimizing the representational gap.
