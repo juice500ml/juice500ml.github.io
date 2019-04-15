@@ -91,3 +91,42 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 - Collaboration decides what behavior (in other words, role and responsibility while collaborating) is needed. What state to manage is decided after the behavior is set.
 - Real-world objects are passive. Software objects are active. They can do much more stuff than real-world objects. They acts as if they are live beings. (Antropomorphism)
 - Real-world objects are just metaphors for software objects, minimizing the representational gap.
+
+# 3. Type and Abstraction
+- London metro analogy
+	- If you think about the purpose of the subway map, you can easily rule out the geographical accuracy, and concentrate more on showing the connection between stations effectively.
+- Use abstraction, or disintegrate and simplify, to make this world easier and predictable, and hence, understandable.
+- Abstraction is ...
+	- Generalization between specific objects: Commonness chosen, difference discarded.
+	- Remove the details to emphasize the important parts.
+- Levels, benefits, values of abstraction is purpose-dependent.
+- Abstraction by groups (or, concepts / types)
+	- Each object has features that can be used to clearly differentiate between other objects.
+	- Use common features (a concept) to *classify* objects, hence reducing the complexity of perception: objects to groups.
+	- Object is an *instance* of a concept (when the concept is applied to the object).
+		- Symbol: Name for a specific concept.
+		- Intension: Complete definition of a concept. Determines whether or not the object is of a concept.
+			- Classification of objects is essentially applying specific concept to each object.
+		- Extension: Set of all objects inside the concept.
+- Data type
+	- Computer memory is typeless; every data is represented as a bit string.
+	- Type system: Classifying these bit strings to serve a specific purpose.
+		- Defining constraints of how to read and manipulate those bit strings.
+		- ex) Let’s define these consecutive 8 bits as *int*, and define various operations on it. Now, there is no need of knowing how *int* is stored in the memory.
+	- Data type is a metadata to classify various bit strings, which implicitly defines what kind of operations are applicable to that bit string.
+- Data types are analogous to types of objects
+	- Type of the object is chosen by how object operates. (Polymorphism, Duck typing)
+		- ex) Operates the same = Same responsibilities = Same message (but may have different response)
+	- Type of the object is regardless of internal implementations. (Encapsulation)
+		- ex) Objects of the same type can handle same messages, regardless of internal data.
+- Responsibility-driven Design (vs. Data-driven design)
+	- Choose responsibilities (operations0 first, then choose the internal data to manage the responsibilities.
+- Hierarchy of types: Responsibility, not data, decides the hierarchy.
+	- A is a generalization of B, B is a specialization of A.
+	- Extension of A $\supset$ Extension of B
+	- Intension of A $\subset$ Intension of B
+	- A is a supertype of B, B is a subtype of A.
+- Classification and Generalization are tools for Abstraction.
+- Type is an abstraction for dynamic characteristics of objects.
+	- Dynamic model (Object diagram) vs. Static model (Type diagram)
+- Class is a way to implement a type.
