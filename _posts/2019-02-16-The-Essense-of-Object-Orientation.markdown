@@ -7,7 +7,7 @@ categories: software_design
 ---
 
 # Overview & Disclaimer
-This is a summary of the book [The Essense of Object-Orientation: Roles, Responsibilites, and Collaborations (객체지향의 사실과 오해: 역할, 책임, 협력 관점에서 본 객체지향)](http://wikibook.co.kr/object-orientation/). Views of this book are well-know to be both surprisingly deep and refreshing, and happily for me, quite kind for beginners like myself. Unfortunately, it was originally written in Korean, and there is seemingly no translation available in English. That is the reason why I’m trying to summarize this book in English, as clearly as possible, hoping a much bigger audience can cherish this book and the ideas from it. But keep in mind that, as myself is far from being a professional to this subject, this summary may contain ambiguous, or potentially hazardous ideas and expressions. Special thanks to [Jisoo Kim](https://blog.jisoo.net), who recommended me this book.
+This is a summary of the book [The Essense of Object-Orientation: Roles, Responsibilites, and Collaborations (객체지향의 사실과 오해: 역할, 책임, 협력 관점에서 본 객체지향)](http://wikibook.co.kr/object-orientation/). Views of this book are well-know to be both surprisingly deep and refreshing, and happily for me, quite kind for beginners like myself. Unfortunately, it was originally written in Korean, and there is seemingly no translation available in English. That is the reason why I’m trying to summarize this book in English, as clearly as possible, hoping a much bigger audience can cherish this book and the ideas from it. But keep in mind that, as myself is far from being a professional to this subject, this summary may contain ambiguous, or potentially hazardous ideas and expressions. Special thanks to [Jisoo Kim](https://blog.jisoo.net), who recommended me this book, and [Dongho Jung](https://github.com/0xB4DF4C3D), who reviewed and summarized this book together.
 
 # 0. Foreword
 - The concept of *object-orientation* brings a lot of controversy in software communities, despite the fact that the concept had been widely used for decades. This phenomena tells us that there is no unified definition, or realization of the concept.
@@ -37,9 +37,9 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 	- People (objects) are granted with roles to collaborate. Roles implicitly involves responsibilities.
 		- Roles do not depend on realization of each objects, hence substitutable. (Customer doesn’t care who gets the coffee.)
 		- How to take responsibility is autonomously selected. Same request, different choice of response: polymorphism. (Barista brews coffee on his/her own terms. State-dependent behavior difference, or overidden behavior.)
-		- One object can have multiple roles. (Cashier could also brew coffee. Single responsibility, but may have multiple roles depending on collaborative situations.)
+		- One object can have multiple roles. (Cashier could also brew coffee. May have multiple roles depending on collaborative situations.)
 - Object should be...
-	- Open: Friendly enough to collaborate. Least astonishment.
+	- Open: Friendly enough to collaborate. Open to requests and responses.
 	- Autonomous: with own principles and control.
 	- To ensure openness and autonomy, object is binded with behavior (the way how object can collaborate with other objects) and state (data needed for behaviors inside the object).
 	- ex) Barista has to be friendly enough to give choices to customers (message-recievable), but customers doesn’t get to dictate how barista brews coffee (method encapsulation).
@@ -89,7 +89,7 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 - Object as a machine
 	- *Query* the state of the object, and *command* to change the state of the object. No other interface to interact with the object.
 - Collaboration decides what behavior (in other words, role and responsibility while collaborating) is needed. What state to manage is decided after the behavior is set.
-- Real-world objects are passive. Software objects are active. They can do much more stuff than real-world objects. They acts as if they are live beings. (Antropomorphism)
+- Real-world objects are passive. Software objects are active. They can do much more stuff than real-world objects. They acts as if they are live beings. (Anthropomorphism)
 - Real-world objects are just metaphors for software objects, minimizing the representational gap.
 
 # 3. Type and Abstraction
@@ -97,36 +97,40 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 	- If you think about the purpose of the subway map, you can easily rule out the geographical accuracy, and concentrate more on showing the connection between stations effectively.
 - Use abstraction, or disintegrate and simplify, to make this world easier and predictable, and hence, understandable.
 - Abstraction is ...
-	- Generalization between specific objects: Commonness chosen, difference discarded.
-	- Remove the details to emphasize the important parts.
+	- Dimension 1: Generalization between specific objects: Commonness chosen, difference discarded.
+	- Dimension 2: Remove the unimportant details to emphasize the important parts.
 - Levels, benefits, values of abstraction is purpose-dependent.
-- Abstraction by groups (or, concepts / types)
+- Classification: Abstraction by groups (or, concepts / types)
 	- Each object has features that can be used to clearly differentiate between other objects.
 	- Use common features (a concept) to *classify* objects, hence reducing the complexity of perception: objects to groups.
-	- Object is an *instance* of a concept (when the concept is applied to the object).
+	- Object is an *instance* of a concept (when the concept is applicable to the object).
 		- Symbol: Name for a specific concept.
 		- Intension: Complete definition of a concept. Determines whether or not the object is of a concept.
-			- Classification of objects is essentially applying specific concept to each object.
+			- Classification of objects is essentially checking the applicability of specific concepts to each object.
 		- Extension: Set of all objects inside the concept.
-- Data type
-	- Computer memory is typeless; every data is represented as a bit string.
-	- Type system: Classifying these bit strings to serve a specific purpose.
-		- Defining constraints of how to read and manipulate those bit strings.
-		- ex) Let’s define these consecutive 8 bits as *int*, and define various operations on it. Now, there is no need of knowing how *int* is stored in the memory.
-	- Data type is a metadata to classify various bit strings, which implicitly defines what kind of operations are applicable to that bit string.
-- Data types are analogous to types of objects
-	- Type of the object is chosen by how object operates. (Polymorphism, Duck typing)
-		- ex) Operates the same = Same responsibilities = Same message (but may have different response)
-	- Type of the object is regardless of internal implementations. (Encapsulation)
-		- ex) Objects of the same type can handle same messages, regardless of internal data.
-- Responsibility-driven Design (vs. Data-driven design)
-	- Choose responsibilities (operations0 first, then choose the internal data to manage the responsibilities.
-- Hierarchy of types: Responsibility, not data, decides the hierarchy.
-	- A is a generalization of B, B is a specialization of A.
-	- Extension of A $\supset$ Extension of B
-	- Intension of A $\subset$ Intension of B
-	- A is a supertype of B, B is a subtype of A.
-- Classification and Generalization are tools for Abstraction.
-- Type is an abstraction for dynamic characteristics of objects.
-	- Dynamic model (Object diagram) vs. Static model (Type diagram)
+	- Choosing the common features (Dimension 1) effectively remove the unimportant details (Dimenison 2), hence the success of abstraction.
+- Responsibility-driven: Abstraction by decoupling What and How
+	- Data type
+		- Computer memory is typeless; every data is represented as a bit string.
+		- Type system: Classifying these bit strings to serve a specific purpose.
+			- Defining constraints of how to read and manipulate those bit strings.
+			- ex) Let’s define these consecutive 8 bits as *int*, and define various operations on it. Now, there is no need of knowing how *int* is stored in the memory.
+		- Data type is a metadata to classify various bit strings, which implicitly defines what kind of operations are applicable to that bit string.
+	- Data types are analogous to types of objects
+		- Type of the object is chosen by how object operates. (Polymorphism, Duck typing, What it does)
+			- ex) Operates the same = Same responsibilities = Same message (but may have different response)
+		- Type of the object is regardless of internal implementations. (Encapsulation, How is it implemented)
+			- ex) Objects of the same type can handle same messages, regardless of internal data.
+	- Responsibility-driven Design (vs. Data-driven design)
+		- Choose responsibilities (operations) first, then choose the internal data to manage the responsibilities.
+- Hierarchy of types: Responsibility(behavior), not data(state), decides the hierarchy.
+	- A is a generalization of B (Dimension 2: Remove features to define A), B is a specialization of A (Dimension 1: Commonness chosen to define B).
+		- Extension of A $\supset$ Extension of B
+		- Intension of A $\subset$ Intension of B
+		- A is a supertype of B, B is a subtype of A.
+- Classification and Type Hierarchy (Generalization & Specialization) are tools for Abstraction.
+	- Classification defines a filter, Generalization/Specialization adjusts strength of a filter.
+	- The result of classification on a superclass is a subclass.
+- Type (which can display properties) is an abstraction for dynamic characteristics (dynamically changing property values) of objects.
+	- Dynamic model (Object diagram, shows multiple snapshots of objects) vs. Static model (Type diagram, shows every possible behaviors and states, which is an abstraction of multiple snapshots)
 - Class is a way to implement a type.
