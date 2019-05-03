@@ -39,7 +39,7 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 		- How to take responsibility is autonomously selected. Same request, different choice of response: polymorphism. (Barista brews coffee on his/her own terms. State-dependent behavior difference, or overidden behavior.)
 		- One object can have multiple roles. (Cashier could also brew coffee. May have multiple roles depending on collaborative situations.)
 - Object should be...
-	- Open: Friendly enough to collaborate. Open to requests and responses.
+	- Open: Friendly enough to cooperate. It shouldn’t be a god object.
 	- Autonomous: with own principles and control.
 	- To ensure openness and autonomy, object is binded with behavior (the way how object can collaborate with other objects) and state (data needed for behaviors inside the object).
 	- ex) Barista has to be friendly enough to give choices to customers (message-recievable), but customers doesn’t get to dictate how barista brews coffee (method encapsulation).
@@ -58,7 +58,7 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 	- Definition: Identifiable stuff. Could be real or abstract.
 	- Object contains state, behavior, and identifier.
 		- Object has a state which is changeable. (The height of Alice is changeable.)
-		- How object behaves changes the state of herself. (Alice changes her height by doing something.)
+		- How object behaves changes the state of itself. (Alice changes her height by doing something.)
 			- Result of the behavior is state-dependent, and result can be explained only with the state of the object.
 			- Result is dependent of the order of behaviors.
 		- No matter what state is in, Alice is uniquely indentifiable. (No matter how tall Alice is, Alice is Alice.)
@@ -70,8 +70,8 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 	- Object has, and should be on full control unto its own state, hence the autonomy. State and behavior are bind to one unit: an object.
 - Behavior
 	- Definition: Doing stuff to respond to incoming messages.
-	- Behavior changes state (side effect), and behavior depends on state.
-		- Behavior has two kinds of side effect: own state change (changing the property value), and message request to other object (via link).
+	- Behavior changes state (side effect), and behavior depends on its state.
+		- Behavior has two kinds of side effect: own state change (changing the property value), and propagating side effect to other object (via message request to callee object by link, or via message response to caller object).
 		- Every meaningful statement has a side effect.
 		- Object can change its state (side effect inside the object), or give out responses (side effect outside the object).
 	- Behavior is the only way for an object to participate in collaborations.
@@ -109,14 +109,14 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 			- Classification of objects is essentially checking the applicability of specific concepts to each object.
 		- Extension: Set of all objects inside the concept.
 	- Choosing the common features (Dimension 1) effectively remove the unimportant details (Dimenison 2), hence the success of abstraction.
-- Responsibility-driven: Abstraction by decoupling What and How
-	- Data type
+- Responsibility-driven: Abstraction by decoupling What and How (vs. Data-driven)
+	- Datatype
 		- Computer memory is typeless; every data is represented as a bit string.
 		- Type system: Classifying these bit strings to serve a specific purpose.
 			- Defining constraints of how to read and manipulate those bit strings.
 			- ex) Let’s define these consecutive 8 bits as *int*, and define various operations on it. Now, there is no need of knowing how *int* is stored in the memory.
-		- Data type is a metadata to classify various bit strings, which implicitly defines what kind of operations are applicable to that bit string.
-	- Data types are analogous to types of objects
+		- Datatype is a metadata to classify various bit strings, which implicitly defines what kind of operations are applicable to that bit string.
+	- Datatypes are analogous to types (of objects)
 		- Type of the object is chosen by how object operates. (Polymorphism, Duck typing, What it does)
 			- ex) Operates the same = Same responsibilities = Same message (but may have different response)
 		- Type of the object is regardless of internal implementations. (Encapsulation, How is it implemented)
@@ -134,3 +134,41 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 - Type (which can display properties) is an abstraction for dynamic characteristics (dynamically changing property values) of objects.
 	- Dynamic model (Object diagram, shows multiple snapshots of objects) vs. Static model (Type diagram, shows every possible behaviors and states, which is an abstraction of multiple snapshots)
 - Class is a way to implement a type.
+
+# 4. Roles, Responsibilities, Collaborations
+- Overall quality depends on collaborations between objects, not on each object. Therefore, it is meaningless to think about states and behaviors without the context of collaborations.
+- Collaborations —> Messages —> Responsibilities
+	- Collaboration is a series of requests and reponses from a single initial request, which is to achieve a common goal.
+	- Callee recieves request from the caller, because callee has the ability and obligation to successfully respond. Therefore, requests and responses (messages) define a responsibility that each object has to undertake.
+	- Responsibilities are a list of services and information, which forms a public interface.
+		- Doing (service): doing for oneself, or initialize/control others.
+		- Knowing (information): knowing/deriving from oneself (innate info), or knowing about related others.
+	- Message, which the caller can send, and the callee can understand, is the only way to collaborate.
+	- Responsibility concentrates on what the object can undertake; message concentrates on the relationship between caller and callee.
+	- Usually, while implementing a single responsibility, it gets split into multiple messages.
+- Roles —> Responsibilities —> Behaviors
+	- A set of responsibilities that the object has to undertake implicitly defines a role inside a collaboration. (Role is an abstraction of objects having common responsibilities)
+	- Abstraction of collaborations can be made by replacing objects into roles, like a placeholder, therefore achieving simplicity (purpose of abstraction itself), flexibility (changing objects inside a collaboration easily) and reusability (in another collaborative situation).
+	- Roles imply behavior compatability, and hence replacability among objects.
+	- Object may have more than one role, so type is usually a specialization of role.
+		- ex) Role: AbstractClass (Closed for modification), Type: ImplementedClass (Extented by openness of AbstractClass)
+- OO is not about concentrating on relationship between classes, as classes are a mere tool to concentrate on collaboration between objects.
+- OO is about assigning adequate responsibilities to adequate objects. Good OO practice is about thinking objects in a collaborative context.
+- Design techniques for good OO practice
+	- Responsibility-Driven Design: a way to design
+		- Split a large responsibility of a system into small responsibilities of each objects.
+		- Each responsibility is assigned to an object.
+		- If some help is needed while taking the responsibility, find another object that can help.
+		- Now a large job is a collaboration between objects.
+	- Design Pattern: example designs
+		- Pre-distinguished collections of roles, responsibilities and collaborations that solves frequently occuring problems.
+	- Test-Driven Development
+		- Distinguishing roles, responsibilities and collaborations with specific tests and checking out conformity from those tests.
+		- Tests are an additional bonus, not the fundamental purpose for TDD.
+		- Writing a failing test —> Write minimum code that passes —> Refactor
+		- Writing a test = Implementing expectations for objects
+			- Expected responses on requests
+				- Verifying that the object has took the responsibility
+			- Expected collaboration of objects
+				- Verifying that the testing object has correctly collaborated with the other objects
+				- Needs stubs (inject indirect inputs, or responses from another object which affect the testing object) and mocks (handle indirect outputs, or requests done from the testing object to another object)
