@@ -177,26 +177,73 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 
 # 5. Responsibility and Message
 - Objects taking responsibility autonomously
-	- Responsibility: behaviors of objects to respond to a message, which is the only way to trigger behaviors
-	- Autonomy: behaving based only on each own principles and determination
-- Assigned responsibilities need the *autonomy* attribute for objects to take responsibility autonomously.
-	- Responsibilities should be abstract/comprehensive and clear enough to ensure autonomy of implementation (or, enough range of freedom for the callee to behave).
-	- If not, the callee has to depend on the orders of the caller, and hence not depending on own principles and determination, therefore impossible to take responsibility autonomously.
-	- Amount of abstraction/comprehensiveness needed differs by context (trade-off between abstraction and clarity), which makes OO design hard but attractive.
+	- Responsibility: behaviors of objects responding to a message (which is the only way to trigger behaviors)
+		- Message triggers behavior == Message triggers responsibility
+	- Autonomy: judgement based only on own principle, behavior based only on own will
+- Level of responsibility that the object has to take has to be autonomous enough for the object to take the responsibility autonomously.
+	- Responsibilities should be abstract/comprehensive (to ensure autonomy of implementation, or, enough range of freedom for the callee to behave) and clear enough (for the intention of collaboration to be expressed clearly).
+	- If not, the callee has to depend on the orders of the caller, and hence not depending on own principles and determination, therefore impossible to take responsibility autonomously. (Callee behaves depending on incoming message, not the caller.)
+	- Amount of abstraction/comprehensiveness needed differs by context (trade-off between abstraction/comprehensiveness and clarity), which makes OO design hard but attractive.
+		- If an object encompasses too much functionality, (The result of maximum abstraction in a qualitative sense is *doing*, in a quantitative sense is too many responsibilities) the responsibility of the object becomes ambiguous, hence failing to collaborate.
 	- Not *how*, but *what* responsibility to take.
-- Structure of message sending
-	- { Callee object }.{ Message name }( { Arguments } ) 
+- Structure of message sending (how to trigger the callee object)
+	- { Callee object }.{ Message name }( { Message arguments } )
 	- ex) mad_hatter.testify(yesterday, kingdom)
+	- Message structure (Function signature) is an abstraction of all the possible requests using the message name
+	- ex) .testify(yesterday, kingdom) == { .testify(190101, here), .testify(190102, there), ... }
 - Message vs. Method
-	- The object is able to recieve the message == The object is able to take responsibility of the message
-	- How responsibility is taken is hidden from the outside of the object. Messages are the boundary of the object. Internal methods are chosen (*how*) by the callee on runtime to handle messages (*what*) from the outside caller.
+	- The object is able to receive the message and respond successfully == The object should, and is able to take the responsibility of the message
+	- How responsibility is taken is hidden from the outside of the object. Messages are the boundary of the object. Internal methods (*how*) are chosen by the callee on runtime to handle messages (*what*) from the outside caller.
 	- Polymorphism is ...
-		- Ability to send the same message (obligation to take the same responsibility) to different types of objects, hence different methods are chosen. 1:N relationship between messages and methods.
-		- Replacability between objects who have the same responsibilities (Capsulization of the type of callee)
+		- Ability to send the same message (obligation to take the same responsibility) to different types of objects, hence different methods are chosen. (1:N relationship between messages and methods)
+		- Achieved by autonomy of each object; not with enough autonomy, behavior depends not only on message, but also on outside of the object, hence jeopardizing polymorphism.
+		- Replaceability between objects who have the same responsibilities. (Encapsulation of the type of callee from the perspective of the caller)
 		- Achieved by transforming strong coupling between types of objects into weak coupling with messages.
-- Weak coupling of callee and caller based on messages makes the design flexible (Caller doesn’t care about the callee until it understands the message, extensible (Can easily change how to collaborate because callee is easily replacable without influencing the caller), and reusable (Reusable collaboration among different contexts).
+- Weak coupling of callee and caller based on messages makes the design ...
+	- Flexible == Callee can change implementations without propagating changes to the caller.
+	- Extensible == How objects collaborate (implementation of the caller on that specific collaborative situation) are easily changeable.
+	- Reusable == Collaborations are easily reused among different contexts by switching callees.
+- Each object may be mediocre, but web of objects are more than a mere sum of them.
+- Power of OO design comes not from classes or polymorphism, but from messages. OO app is made from classes, but defined by messages.
 - Responsibility-Driven Development
-	- Concentrating not on the collaboration (message, responsibility-driven) and on the object itself (data and its operations, data-driven) makes internal structure of object as part of the definition of the object, and hence harming the autonomity.
-	- Functionality of an application $\to$ Responsibility of a system $\to$ Responsibility of the object which starts the collaboration $\to$ Messages toward others so that the object can take responsibility $\to$ Choosing adequate callees that can take responsibility $\to$ Taking the responsibility required, requested from the caller
+	- Object is defined by the needs of other objects. Therefore, definition == interface.
+	- Concentrating not on the collaboration (message, responsibility-driven) and on the object itself (abstract data type == data and its operations, data-driven) makes internal structure of the object as part of the definition of the object (== interface depends on the implementation), hence harming the autonomy.
+	- Functionality of an application $\to$ Responsibility of a system $\to$ Responsibility of the object which starts the collaboration $\to$ Messages toward others so that the object can take the responsibility $\to$ Choosing adequate callees that can take the part of the responsibility $\to$ Taking the required responsibility requested from the caller
 	- Message chooses the responsibility of the callee.
-	- What/Who Cycle: First, choose what to do (message), regardless of the properties of each object. Then choose who does it (callee), hence the responsibility is decided afterwards.
+	- What/Who Cycle: First, choose what to do (message, responsibility), regardless of the properties of each object. Then choose who does it (callee object), hence the responsibility is decided afterwards. == Interface Discovery @ TDD
+  - Callee object is chosen after the message is chosen, so caller cannot know the internals of the callee. Caller has no choice but to trust the callee to deal with the message.
+	- Message depending on the state of the callee is the proof for harming the autonomy. Delay the decision, and make the callee decide.
+	- Concentrating on *what*, not *how*, makes the interface of the callee smaller (lesser responsibilities), hence dependencies needed by the caller decreases.
+	- Following the Law of Demeter (Tell (what to do), Don't Ask (how to do it)) has its advantages: Better encapsulation, Weak coupling, Better Autonomy, Clear intentions.
+	- Trust the message. Autonomous responsibilities will follow.
+- Characteristics of an interface
+	- If the user get used to the interface of an object, you don't have to know the internals to do something with the object. (Abstraction of implementation by encapsulation) ex) Driving a car
+	- Changing the internals (implementation) does not affect the end user. (Flexibility by weak coupling) ex) Changing the engine of a car
+	- If the user is used to the interface, user can also easily utilize another object with the same interface. (Reusability by weak coupling) ex) Different car, same person.
+- Interface is a list of digestible messages (function signatures).
+- Only difference between private (internal) and public (external) interface is that the private interface is only accessible to its own. The object has to message at oneself to request something to oneself.
+- Result of using the interface: weak coupling & information is hidden.
+- Separation of public interface (externals) and implementation (internals) principle
+	- Implementation: Object's internal structure and how it works (states and methods). Everything except the public interface.
+	- Behavior: *method* of the callee to handle the incoming message
+	- Separation of stuff that can be changed (implementation) and that cannot be changed (public interface)
+		- Because software always changes: grasping every side effects of every modifications (modification propagation) is near impossible.
+		- Because it makes the object autonomous: it gives the ability to change the implementation without affecting outside.
+	- Caller and callee loosely coupled with the interface, not strongly coupled with the implementation
+	- Two viewpoints of encapsulation (Information hiding)
+		- Data encapsulation: Packaging of state and behavior
+			- Prerequisite for the separation of interface and implementation
+			- Prerequisite for the object autonomy
+		- Encapsulation of private secrets
+			- Make volatile (frequently changing) stuff private to minimize interference from the outside / error propagation to the outside, hence guaranteeing autonomy.
+- Object-oriented mindset
+	- *More abstract interface* (autonomous responsibility) guarantees autonomy of the callee object.
+	- *Minimal interface* (while complying with the message) exposes minimal amount of internals to the outside world, hence minimizing the effect of changing the implementation.
+	- *Awareness for the difference between interface and implementation* (strict separation between inside and outside of the object) to guarantee autonomy of the object, and to be robust against implementation changes.
+	- Autonomy (Not having to care about the caller) vs. Robust against callee modification (Not having to care about the callee)
+- Some collaboration are superior than others, because it is more easily understandable, and robust to changes. Superiority is determined by autonomous responsibility (== adequate amount of responsibility spread between caller and callee by the means of abstraction/clarity).
+	- Autonomous responsibility makes collaborations simpler, as it shows intentions without the details.
+	- Responsibility (or, public interface) seperates inside and outside of the object. Moreover, autonomous responsibility *clearly* separates it, as too specific responsibility eventually shows the implementation via interface.
+	- Autonomous responsibility makes callee modification to not propagate outside the callee, as it minimizes interface needed.
+	- Autonomous responsibility assures flexibility and reusability of designs (collaboration situations), as the callee and caller are loosely coupled only with messages.
+	- Autonomous responsibility makes roles of objects easily understandable, as responsibilities are highly coherent, hence making the role (set of responsibilities) clear.
