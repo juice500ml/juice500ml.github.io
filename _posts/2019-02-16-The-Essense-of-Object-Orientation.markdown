@@ -247,3 +247,47 @@ This is a summary of the book [The Essense of Object-Orientation: Roles, Respons
 	- Autonomous responsibility makes callee modification to not propagate outside the callee, as it minimizes interface needed.
 	- Autonomous responsibility assures flexibility and reusability of designs (collaboration situations), as the callee and caller are loosely coupled only with messages.
 	- Autonomous responsibility makes roles of objects easily understandable, as responsibilities are highly coherent, hence making the role (set of responsibilities) clear.
+
+# 6. Object Map
+- Analogy of pathfinding: two approaches for pathfinding from location A to B
+	- Functional, solution-directed approach (find the solution with function)
+		- ex) Go straight 100m, turn left, ...
+		- Not able to generalize, not reusable.
+	- Structural, problem-directed approach (understand the problem with structure)
+		- ex) Use the map to find the specific path
+		- Map is an abstract model based on real-world locations (stable information). Hence it has enough context information to find the exact path on general occasions.
+- Subordinate function to structure:
+	- It generalizes better: able to find a general way of finding the solution (abstraction of function)
+	- More easily understandable: benefit of abstraction
+	- Robust to modifications: many solutions (functions) can be generated from a single problem (structure)
+- Successful softwares offer not only great functionalities, but also the speed and stability when adding new functionalities.
+- Requirements always change. Best way to prepare it is not to predict the future itself, but to make room for choices that can accept changes. Lowering the cost of modification is the primary reason for software design.
+- Function is a service for users. Structure is a base to implement the function.
+	- Structure is expressed via domain model.
+		- Domain: Field of interest (set of knowledge, concepts and relations between concepts) that solves specific set of problems.
+		- Domain Model: Explanation of how something works. Abstraction of domain. A mental model for the people who cares about the problem (stakeholders).
+			- Conceptualization: ex) There are no folders inside the computer. Folders are an effective conceptualization of the part of the file system. File system is an effective conceptualization of physical storages. It makes them easier to use. [*Norman 1988*]
+			- User model: Domain model of users. Generated from the product (system).
+			- Design model: Designer’s conception of look, feel and operation of the product. [*Norman 1988*]
+		- System Image: How the system is perceived through the physical product and the peripheral information surrounding the product: documentations, reviews, ...
+		- User and designer cannot directly interact with each other. They use product (system) as their medium. That is why the system image, which is formulated around the system, which is built upon the design model, has to reflect the user model.
+		- User model, design model and system image can be made similar to each other (minimize the representational/semantic gap between real world objects (object from the user model) and software objects using metaphor) with OO paradigm: Seamlessness of OO paradigm.
+		- User understands the essentials of the domain better than any other. Essentials are usually not volatile. Therefore, user model provides stable structure that can contain functions.
+	- Function is expressed via use case.
+		- Concentrate on the interaction between user (with a specific purpose) and system (does a series of procedures to serve that purpose) to find good functional requirements.
+		- Use case
+			- Flow of interactions between user and system to achieve purpose of the user
+			- Understanding contract between system and its stakeholders while concentrating on actions
+		- Actor: A role that a particular person, people, or a computer system, is playing when they use the system under design. [*Cockburn 1999*]
+		- Primary Actor: A particular actor that is associated with a use case. The use case satisfies the need of the primary actor, who initially starts the interaction with the system. [*Cockburn 1999*]
+		- Stakeholder: A person with a vested interest in the behavior inside the use case. [*Cockburn 1999*]
+		- Scenario
+			-  Sequence of interactions that happens under certain conditions, with the intent to achieve the primary actor’s goal, and having a particular result with respect to that goal. [*Cockburn 1999*]
+			- A use case is a set of scenarios tied together by a common goal of the user. [*Fowler 2003*] 
+			- Systematic relations between sporadic functions can be found by providing the intent.
+
+# References
+- Note that cited sentences may be summarized, paraphrased or rewritten. But due to limitations of myself, modifications may changed the original intention of the writer.
+- *Norman 1988*: Donald A. Norman, The Psychology of Everyday Things
+- *Cockburn 1999*: Alistair Cockburn, Writing Effective Use Cases
+- *Fowler 2003*: UML Distilled: A Brief Guide to the Standard Object Modeling Language
