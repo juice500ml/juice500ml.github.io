@@ -1,0 +1,309 @@
+---
+layout: post
+title:  "The Essence of Object Orientation"
+date:   2019-02-16 02:50:44
+author: Kwanghee Choi
+categories: software_design
+---
+
+# Overview & Disclaimer
+This is a summary of the book [The Essence of Object-Orientation: Roles, Responsibilites, and Collaborations (객체지향의 사실과 오해: 역할, 책임, 협력 관점에서 본 객체지향)](http://wikibook.co.kr/object-orientation/). Views of this book are well-known to be both surprisingly deep and refreshing, and happily for me, quite kind for beginners like myself. Unfortunately, it was originally written in Korean, and there is seemingly no translation available in English. That is the reason why I’m trying to summarize this book in English, as clearly as possible, hoping a much bigger audience can cherish this book and the ideas from it. But keep in mind that, as myself is far from being a professional to this subject, this summary may contain ambiguous, or potentially hazardous ideas and expressions. Special thanks to [Jisoo Kim](https://blog.jisoo.net), who recommended me this book, and [Dongho Jung](https://github.com/0xF4D3C0D3), who reviewed and summarized this book together.
+
+# 0. Foreword
+- The concept of *object-orientation* brings a lot of controversy in software communities, despite the fact that the concept had been widely used for decades. This phenomena tells us that there is no unified definition, or realization of the concept.
+- That said, few of the possible ideas:
+	- OO is *object* oriented, not *class* or *inheritance* oriented.
+	- Object is not an independent existence of its own, but a *collaborative community to implement a function*, that each object has an adequate amount of *roles* and *responsibility*.
+- Contents for each chapters
+	- Chapter 1 argues that the essense of OO paradigm is, *autonomous objects collaborating*.
+	- Chapter 2 tries to answer the fundamental question of "What is an *object*?".
+	- Chapter 3 covers *abstraction*, or more simply put, simplyfing dynamic objects to static types.
+	- Chapter 4 explains fundamental materials of OO: *roles, responsibilities, and collaborations*. Each object have a specific role for collaborations, and take responsibilities of that role.
+	- Chapter 5 emphasizes that *messages* can assure the autonomy of an object and flexibility of design.
+	- Chapter 6 shows two aspects of OO: *structure and function*. Structure is more robust to changing circumstances than function.
+	- Chapter 7 encompasses the previous chapters by looking through the implementation details written in code.
+
+# 1. Collaborative Community of Objects
+- OO is not about mimicking real-world objects, but more about creating a whole new world that can satisfy users.
+- Humans are analogous to objects.
+	- Humans think and decide autonomously, objects encapsulate states and behaviors to act autonomously.
+	- Humans make both implicit and explicit contracts to collaborate for a common goal, objects message each other to collaborate for a single functionality.
+- Coffee shop analogy
+	- Customer orders coffee, cashier gets orders, barista brews coffee.
+	- Coffee is transported back from barista, cashier to customer.
+	- Collaborations are made with requests and responses.
+		- Requests are made from customer to cashier (order coffee), cashier to barista (brew coffee).
+		- Responses (coffee) are made, in the opposite direction to requests.
+	- People (objects) are granted with roles to collaborate. Roles implicitly involves responsibilities.
+		- Roles do not depend on realization of each objects, hence substitutable. (Customer doesn’t care who gets the coffee.)
+		- How to take responsibility is autonomously selected. Same request, different choice of response. (Barista brews coffee on his/her own terms.) State-dependent behavior difference, or overidden behavior (polymorphism).
+		- One object can have multiple roles. (Cashier could also brew coffee. May have multiple roles depending on collaborative situations.)
+- Object should be...
+	- Open: Friendly enough to cooperate. It shouldn’t be a god object.
+	- Autonomous: with own principles and control.
+	- To ensure openness and autonomy, object is binded with behavior (the way how object can collaborate with other objects) and state (data needed for behaviors inside the object).
+	- ex) Barista has to be friendly enough to give choices to customers (message-recievable), but customers doesn’t get to dictate how barista brews coffee (method encapsulation).
+		- Open: Customer (sender) sends a message (make a request) to the barista (reciever). Barista recieves a message from the customer (and prepare to make a response).
+		- Autonomous: Customer can know *what* barista is brewing, but does not have to know *how*.
+- OO is not about classes. It is about autonomous objects messaging each other. It is about maintaining collaborations between roles with responsibilities. Classes are just tools to implement those.
+
+# 2. Object in Wonderland
+- OO takes advantage of innate human ability of seeing the world as a set of independent and perceivable objects.
+- Alice in Wonderland analogy
+	- Alice changes her height by eating various magical food, to achieve something, like go through a small door, or eat a large cake.
+- Everything is an object if it is...
+	- Perceivable (human-tractable) as a single independent (seperable to other objects) unit
+	- Can determine the time of creation (instantiation)
+- Object
+	- Definition: Identifiable stuff. Could be real or abstract.
+	- Object contains state, behavior, and identifier.
+		- Object has a state which is changeable. (The height of Alice is changeable.)
+		- How object behaves changes the state of itself. (Alice changes her height by doing something.)
+			- Result of the behavior is state-dependent, and can be explained only with the state of the object.
+			- Result of the behavior is dependent of the order of behaviors.
+		- No matter what state is in, Alice is uniquely indentifiable. (No matter how tall Alice is, Alice is Alice.)
+- State
+	- Definition: State is the total information that the object has in a given time.
+	- State consists of property (static) and property value (dynamic). Property can be attribute (value) or link (instance of correlation between other object).
+	- Values (number, string, datetime, ...) are not objects, as they are not uniquely identifiable. But values provides ways to express the state of an object.
+	- State is an abstraction of all the previous behaviors to reduce the complexities of the real-world.
+	- Object has, and should be on full control unto its own state, hence the autonomy. State and behavior are bind to one unit: an object.
+- Behavior
+	- Definition: Doing stuff to respond to incoming messages.
+	- Behavior changes state (side effect), and behavior depends on its state.
+		- Behavior has two kinds of side effect: own state change (changing the property value), and propagating side effect to other object (via message request to callee object by link, or via message response to caller object).
+		- Every meaningful statement has a side effect.
+		- Object can change its state (side effect inside the object), or give out responses (side effect outside the object).
+		- If the behavior does not depend on its state (e.g. depends only on parameters, static methods), it shouldn’t be called a behavior.
+	- Behavior is the only way for an object to participate in collaborations.
+	- State encapsulation
+		- Only behaviors are visible, states are invisible (from the outside). The only way to manipulate states is via behaviors.
+		- As the object becomes more autonomous, it gets more intelligent. In other words, collaboration gets more flexible and concise.
+		- If states are visible, infinitely many behaviors that can manipulate states get exposed.
+- Identifier
+	- Object (reference object, entity) vs. Value (value object)
+	- Identifiability
+		- Object is uniquely identifiable. == Object has a specific property (identifier) that makes itself distinguishable to other objects.
+		- Value is not uniquely identifiable. == Value does not need an identifier.
+	- Mutability
+		- Value models unchanging amounts. Its state never changes. (Immutable state) Therefore, *equality* depends on the state of each values.
+		- State encompasses changing state depending on time. (Mutable state) Therefore, two objects are *identical* if identifier is the same.
+- Object as a machine
+	- *Query* the state of the object (read, getter), and *command* to change the state of the object (write, setter). No other interface to interact with the object.
+- Collaboration decides what behavior (in other words, role and responsibility while collaborating) is needed. What state to manage is decided after the behavior is set.
+- Real-world objects are passive. Software objects are active. They can do much more stuff than real-world objects. They acts as if they are live beings. (Anthropomorphism)
+- Real-world objects are just metaphors for software objects, minimizing the representational gap.
+
+# 3. Type and Abstraction
+- London metro analogy
+	- If you think about the purpose of the subway map, you can easily rule out the geographical accuracy, and concentrate more on showing the connection between stations effectively.
+- Use abstraction, or disintegrate (generating features) and simplify (choosing features), to make this world easier and predictable, and hence, understandable.
+- Abstraction is ...
+	- Dimension 1: Generalization between specific objects: Commonness chosen, difference discarded.
+	- Dimension 2: Remove the unimportant details to emphasize the important parts.
+- Levels, benefits, values of abstraction is purpose-dependent.
+- Classification: Abstraction by groups (or, concepts / types)
+	- Each object has features that can be used to clearly differentiate between other objects.
+	- Use common features (a concept) to *classify* objects, hence reducing the complexity of perception: objects to groups.
+	- Object is an *instance* of a concept (when the concept is applicable to the object).
+		- Symbol: Name for a specific concept.
+		- Intension: Complete definition of a concept. Determines whether or not the object is of a concept.
+			- Classification of objects is essentially checking the applicability of specific concepts to each object.
+		- Extension: Set of all objects inside the concept.
+	- Choosing the common features (Dimension 1) effectively remove the unimportant details (Dimenison 2), hence the success of abstraction.
+- Responsibility-driven: Abstraction by decoupling What and How (vs. Data-driven)
+	- Datatype
+		- Computer memory is typeless; every data is represented as a bit string.
+		- Type system: Classifying these bit strings to serve a specific purpose.
+			- Defining constraints of how to read and manipulate those bit strings.
+			- ex) Let’s define these consecutive 8 bits as *int*, and define various operations on it. Now, there is no need of knowing how *int* is stored in the memory.
+		- Datatype is a metadata to classify various bit strings, which implicitly defines what kind of operations are applicable to that bit string.
+	- Datatypes are analogous to types (of objects)
+		- Type of the object is chosen by how object operates. (Polymorphism, Duck typing, What it does)
+			- ex) Operates the same == Same responsibilities == Same message (but may have different response)
+		- Type of the object is regardless of internal implementations. (Encapsulation, How is it implemented)
+			- ex) Objects of the same type can handle same messages, regardless of internal data.
+	- Responsibility-driven Design (vs. Data-driven design)
+		- Choose responsibilities (operations) first, then choose the internal data to manage the responsibilities.
+- Hierarchy of types: Responsibility(behavior), not data(state), decides the hierarchy.
+	- A is a generalization of B (Dimension 2: Remove features to define A), B is a specialization of A (Dimension 1: Commonness chosen to define B).
+		- Extension of A $\supset$ Extension of B
+		- Intension of A $\subset$ Intension of B
+		- A is a supertype of B, B is a subtype of A.
+- Classification and Type Hierarchy (Generalization & Specialization) are tools for Abstraction.
+	- Classification defines a filter, Generalization/Specialization adjusts strength of a filter.
+	- The result of classification on a superclass is a subclass.
+- Type (which can display properties) is an abstraction for dynamic characteristics (dynamically changing property values) of objects.
+	- Dynamic model (Object diagram, shows multiple snapshots of objects) vs. Static model (Type diagram, shows every possible behaviors and states, which is an abstraction of multiple snapshots)
+- Class is a way to implement a type.
+
+# 4. Roles, Responsibilities, Collaborations
+- Overall quality depends on collaborations between objects, not on each object. Therefore, it is meaningless to think about states and behaviors without the context of collaborations.
+- Collaborations $\to$ Messages $\to$ Responsibilities
+	- Collaboration is a series of requests and reponses from a single initial request, which is to achieve a common goal.
+	- Callee recieves request from the caller, because callee has the ability and obligation to successfully respond. Therefore, requests and responses (messages) define a responsibility that each object has to undertake.
+	- Responsibilities are a list of services and information, which forms a public interface.
+		- Doing (service, command): doing for oneself, or initialize/control others.
+		- Knowing (information, query): knowing/deriving from oneself (innate info), or knowing about related others.
+	- Message, which the caller can send, and the callee can understand, is the only way to collaborate.
+	- Responsibility concentrates on what the object can undertake; message concentrates on the relationship between caller and callee.
+	- Mostly, while implementing a single responsibility, it gets split into multiple messages. (e.g. sequential messages, or various kinds of messages)
+- Responsibilities $\to$ Behaviors
+	- A set of responsibilities that the object has to undertake implicitly defines a role inside a collaboration. (Role is an abstraction of objects having common responsibilities)
+	- Abstraction of collaborations can be made by replacing objects into roles, like a placeholder, therefore achieving simplicity (purpose of abstraction itself), flexibility (changing objects inside a collaboration easily) and reusability (in another collaborative situation).
+	- Roles imply behavior compatability, and hence replacability among objects.
+	- Object may have more than one role, so type is usually a specialization of role.
+		- ex) Role: AbstractClass (Closed for modification), Type: ImplementedClass (Extended by openness of AbstractClass)
+- OO is not about concentrating on relationship between classes, as classes are a mere tool to concentrate on collaboration between objects.
+- OO is about assigning adequate responsibilities to adequate objects. Good OO practice is about thinking objects in a collaborative context.
+- Design techniques for good OO practice
+	- Responsibility-Driven Design: a way to design
+		- Split a large responsibility of a system into small responsibilities of each objects.
+		- Each responsibility is assigned to an object.
+		- If some help is needed while taking the responsibility, find another object that can help.
+		- Now a large job is a collaboration between objects.
+	- Design Pattern: example designs
+		- Pre-distinguished collections of roles, responsibilities and collaborations that solves frequently occuring problems.
+	- Test-Driven Development
+		- Distinguishing roles, responsibilities and collaborations with specific tests and checking out conformity from those tests.
+		- Tests are an additional bonus, not the fundamental purpose for TDD.
+		- Writing a failing test (Red) $\to$ Write minimum code that passes (Green) $\to$ Refactor
+		- Writing a test == Implementing expectations for objects
+			- Expected responses on requests
+				- Verifying that the object has took the responsibility
+			- Expected collaboration of objects
+				- Verifying that the testing object has correctly collaborated with the other objects
+				- Needs stubs (inject indirect inputs, or responses from another object which affect the testing object) and mocks (handle indirect outputs, or requests done from the testing object to another object)
+
+# 5. Responsibility and Message
+- Objects taking responsibility autonomously
+	- Responsibility: behaviors of objects responding to a message (which is the only way to trigger behaviors)
+		- Message triggers behavior == Message triggers responsibility
+	- Autonomy: judgement based only on own principle, behavior based only on own will
+- Level of responsibility that the object has to take has to be autonomous enough for the object to take the responsibility autonomously.
+	- Responsibilities should be abstract/comprehensive (to ensure autonomy of implementation, or, enough range of freedom for the callee to behave) and clear enough (for the intention of collaboration to be expressed clearly).
+	- If not, the callee has to depend on the orders of the caller, and hence not depending on own principles and determination, therefore impossible to take responsibility autonomously. (Callee behaves depending on incoming message, not the caller.)
+	- Amount of abstraction/comprehensiveness needed differs by context (trade-off between abstraction/comprehensiveness and clarity), which makes OO design hard but attractive.
+		- If an object encompasses too much functionality, (The result of maximum abstraction in a qualitative sense is *doing*, in a quantitative sense is too many responsibilities) the responsibility of the object becomes ambiguous, hence failing to collaborate.
+	- Not *how*, but *what* responsibility to take.
+- Structure of message sending (how to trigger the callee object)
+	- { Callee object }.{ Message name }( { Message arguments } )
+	- ex) mad_hatter.testify(yesterday, kingdom)
+	- Message structure (Function signature) is an abstraction of all the possible requests using the message name
+	- ex) .testify(yesterday, kingdom) == { .testify(190101, here), .testify(190102, there), ... }
+- Message vs. Method
+	- The object is able to receive the message and respond successfully == The object should, and is able to take the responsibility of the message
+	- How responsibility is taken is hidden from the outside of the object. Messages are the boundary of the object. Internal methods (*how*) are chosen by the callee on runtime to handle messages (*what*) from the outside caller.
+	- Polymorphism is ...
+		- Ability to send the same message (obligation to take the same responsibility) to different types of objects, hence different methods are chosen. (1:N relationship between messages and methods)
+		- Achieved by autonomy of each object; not with enough autonomy, behavior depends not only on message, but also on outside of the object, hence jeopardizing polymorphism.
+		- Replaceability between objects who have the same responsibilities. (Encapsulation of the type of callee from the perspective of the caller)
+		- Achieved by transforming strong coupling between types of objects into weak coupling with messages.
+- Weak coupling of callee and caller based on messages makes the design ...
+	- Flexible == Callee can change implementations without propagating changes to the caller.
+	- Extensible == How objects collaborate (implementation of the caller on that specific collaborative situation) are easily changeable.
+	- Reusable == Collaborations are easily reused among different contexts by switching callees.
+- Each object may be mediocre, but web of objects are more than a mere sum of them.
+- Power of OO design comes not from classes or polymorphism, but from messages. OO app is made from classes, but defined by messages.
+- Responsibility-Driven Development
+	- Object is defined by the needs of other objects. Therefore, definition == interface.
+	- Concentrating not on the collaboration (message, responsibility-driven) and on the object itself (abstract data type == data and its operations, data-driven) makes internal structure of the object as part of the definition of the object (== interface depends on the implementation), hence harming the autonomy.
+	- Functionality of an application $\to$ Responsibility of a system $\to$ Responsibility of the object which starts the collaboration $\to$ Messages toward others so that the object can take the responsibility $\to$ Choosing adequate callees that can take the part of the responsibility $\to$ Taking the required responsibility requested from the caller
+	- Message chooses the responsibility of the callee.
+	- What/Who Cycle: First, choose what to do (message, responsibility), regardless of the properties of each object. Then choose who does it (callee object), hence the responsibility is decided afterwards. == Interface Discovery @ TDD
+  - Callee object is chosen after the message is chosen, so caller cannot know the internals of the callee. Caller has no choice but to trust the callee to deal with the message.
+	- Message depending on the state of the callee is the proof for harming the autonomy. Delay the decision, and make the callee decide.
+	- Concentrating on *what*, not *how*, makes the interface of the callee smaller (lesser responsibilities), hence dependencies needed by the caller decreases.
+	- Following the Law of Demeter (Tell (what to do), Don't Ask (how to do it)) has its advantages: Better encapsulation, Weak coupling, Better Autonomy, Clear intentions.
+	- Trust the message. Autonomous responsibilities will follow.
+- Characteristics of an interface
+	- If the user get used to the interface of an object, you don't have to know the internals to do something with the object. (Abstraction of implementation by encapsulation) ex) Driving a car
+	- Changing the internals (implementation) does not affect the end user. (Flexibility by weak coupling) ex) Changing the engine of a car
+	- If the user is used to the interface, user can also easily utilize another object with the same interface. (Reusability by weak coupling) ex) Different car, same person.
+- Interface is a list of digestible messages (function signatures).
+- Only difference between private (internal) and public (external) interface is that the private interface is only accessible to its own. The object has to message at oneself to request something to oneself.
+- Result of using the interface: weak coupling & information is hidden.
+- Separation of public interface (externals) and implementation (internals) principle
+	- Implementation: Object's internal structure and how it works (states and methods). Everything except the public interface.
+	- Behavior: *method* of the callee to handle the incoming message
+	- Separation of stuff that can be changed (implementation) and that cannot be changed (public interface)
+		- Because software always changes: grasping every side effects of every modifications (modification propagation) is near impossible.
+		- Because it makes the object autonomous: it gives the ability to change the implementation without affecting outside.
+	- Caller and callee loosely coupled with the interface, not strongly coupled with the implementation
+	- Two viewpoints of encapsulation (Information hiding)
+		- Data encapsulation: Packaging of state and behavior
+			- Prerequisite for the separation of interface and implementation
+			- Prerequisite for the object autonomy
+		- Encapsulation of private secrets
+			- Make volatile (frequently changing) stuff private to minimize interference from the outside / error propagation to the outside, hence guaranteeing autonomy.
+- Object-oriented mindset
+	- *More abstract interface* (autonomous responsibility) guarantees autonomy of the callee object.
+	- *Minimal interface* (while complying with the message) exposes minimal amount of internals to the outside world, hence minimizing the effect of changing the implementation.
+	- *Awareness for the difference between interface and implementation* (strict separation between inside and outside of the object) to guarantee autonomy of the object, and to be robust against implementation changes.
+	- Autonomy (Not having to care about the caller) vs. Robust against callee modification (Not having to care about the callee)
+- Some collaboration are superior than others, because it is more easily understandable, and robust to changes. Superiority is determined by autonomous responsibility (== adequate amount of responsibility spread between caller and callee by the means of abstraction/clarity).
+	- Autonomous responsibility makes collaborations simpler, as it shows intentions without the details.
+	- Responsibility (or, public interface) seperates inside and outside of the object. Moreover, autonomous responsibility *clearly* separates it, as too specific responsibility eventually shows the implementation via interface.
+	- Autonomous responsibility makes callee modification to not propagate outside the callee, as it minimizes interface needed.
+	- Autonomous responsibility assures flexibility and reusability of designs (collaboration situations), as the callee and caller are loosely coupled only with messages.
+	- Autonomous responsibility makes roles of objects easily understandable, as responsibilities are highly coherent, hence making the role (set of responsibilities) clear.
+
+# 6. Object Map
+- Analogy of pathfinding: two approaches for pathfinding from location A to B
+	- Functional, solution-directed approach (find the solution with function)
+		- ex) Go straight 100m, turn left, ...
+		- Not able to generalize, not reusable.
+	- Structural, problem-directed approach (understand the problem with structure)
+		- ex) Use the map to find the specific path
+		- Map is an abstract model based on real-world locations (stable information). Hence it has enough context information to find the exact path on general occasions.
+- Subordinate function to structure:
+	- It generalizes better: able to find a general way of finding the solution (abstraction of function)
+	- More easily understandable: benefit of abstraction
+	- Robust to modifications: many solutions (functions) can be generated from a single problem (structure)
+- Successful softwares offer not only great functionalities, but also the speed and stability when adding new functionalities.
+- Requirements always change. Best way to prepare it is not to predict the future itself, but to make room for choices that can accept changes. Lowering the cost of modification is the primary reason for software design.
+- Function is a service for users. Structure is a base to implement the function.
+	- Structure is expressed via domain model.
+		- Domain: Field of interest (set of knowledge, concepts and relations between concepts) that solves specific set of problems.
+		- Domain Model: Explanation of how something works. Abstraction of domain. A mental model for the people who cares about the problem (stakeholders).
+			- Conceptualization: ex) There are no folders inside the computer. Folders are an effective conceptualization of the part of the file system. File system is an effective conceptualization of physical storages. It makes them easier to use. [*Norman 1988*]
+			- User model: Domain model of users. Generated from the product (system).
+			- Design model: Designer’s conception of look, feel and operation of the product. [*Norman 1988*]
+		- System Image: How the system is perceived through the physical product and the peripheral information surrounding the product: documentations, reviews, ...
+		- User and designer cannot directly interact with each other. They use product (system) as their medium. That is why the system image, which is formulated around the system, which is built upon the design model, has to reflect the user model.
+		- User model, design model and system image can be made similar to each other (minimize the representational/semantic gap between real world objects (object from the user model) and software objects using metaphor) with OO paradigm: Seamlessness of OO paradigm.
+		- User understands the essentials of the domain better than any other. Essentials are usually not volatile. Therefore, user model provides stable structure that can contain functions.
+	- Function is expressed via use case.
+		- Concentrate on the interaction between user (with a specific purpose) and system (does a series of procedures to serve that purpose) to find good functional requirements.
+		- Use case
+			- Flow of interactions between user and system to achieve purpose of the user
+			- Understanding contract between system and its stakeholders while concentrating on actions
+		- Actor: A role that a particular person, people, or a computer system, is playing when they use the system under design. [*Cockburn 1999*]
+		- Primary Actor: A particular actor that is associated with a use case. The use case satisfies the need of the primary actor, who initially starts the interaction with the system. [*Cockburn 1999*]
+		- Stakeholder: A person with a vested interest in the behavior inside the use case. [*Cockburn 1999*]
+		- Scenario: Sequence of interactions that happens under certain conditions, with the intent to achieve the primary actor’s goal, and having a particular result with respect to that goal. [*Cockburn 1999*]
+		- A use case is a set of scenarios tied together by a common goal of the user. [*Fowler 2003*] 
+		- Systematic relations between sporadic functions can be found by providing the intent to achieve the primary actor’s goal.
+		- Characteristics of use case
+			- It’s a story written in text, not a diagram. It should be about the flow of interaction Between user and system.
+			- Use case is a directed acyclic graph (interactions as nodes). Scenario is one of those paths. Scenario is also called *use case instance*.
+			- Use case is not a list of features (Feature is a list of functions). Stakeholders can easily communicate with the help of context, which is generated by grouping multiple features with a use case and including features in the flow of interaction.
+			- Use case should not include UI, which is volatile. (Essential use case)
+			- Use case only includes public interface of the system. Therefore, it is impossible to deduct the state and behavior of each objects from the use case. However, it may include hints about the terms that can be used in the domain model.
+- System as a whole, is an object, which collaborates with the user via message to satisfy the goal of the user. Therefore, functional requirements of the system is now the responsibility of the system.
+- Responsibility-driven development
+	- Use case identifies functional requirements. Functional requirements express responsibilities of the system.
+	- Domain model supplies stable structure that can accept volatile funcitonal requirements.
+	- RDD integrates those two.
+- Recursive Composition (of Smalltalk)
+	- Why split computers into data structure (state) and procedure (behavior)? Just accept computer as an object.
+	- Each Smalltalk object is a little computer (autonomous object).
+	- An object is able to split into little objects recursively.
+- Symbol is borrowed from the concepts in the domain model, resulting narrow semantic gap, exploiting tacit knowledge that usually remains unchanged.
+- Reversibility: Domain model modifications can be deducted from the modifications of the code itself, and vice versa.
+
+# References
+- Note that cited sentences may be summarized, paraphrased or rewritten. But due to limitations of myself, modifications may changed the original intention of the writer.
+- *Norman 1988*: Donald A. Norman, The Psychology of Everyday Things
+- *Cockburn 1999*: Alistair Cockburn, Writing Effective Use Cases
+- *Fowler 2003*: UML Distilled: A Brief Guide to the Standard Object Modeling Language
