@@ -7,7 +7,7 @@ categories: software_design
 ---
 
 # Overview & Disclaimer
-This is a summary of the book [The Essence of Object-Orientation: Roles, Responsibilites, and Collaborations (객체지향의 사실과 오해: 역할, 책임, 협력 관점에서 본 객체지향)](http://wikibook.co.kr/object-orientation/). Views of this book are well-known to be both surprisingly deep and refreshing, and happily for me, quite kind for beginners like myself. Unfortunately, it was originally written in Korean, and there is seemingly no translation available in English. That is the reason why I’m trying to summarize this book in English, as clearly as possible, hoping a much bigger audience can cherish this book and the ideas from it. But keep in mind that, as myself is far from being a professional to this subject, this summary may contain ambiguous, or potentially hazardous ideas and expressions. Special thanks to [Jisoo Kim](https://blog.jisoo.net), who recommended me this book, and [Dongho Jung](https://github.com/0xF4D3C0D3), who reviewed and summarized this book together.
+This is a summary of the book [The Essence of Object-Orientation: Roles, Responsibilites, and Collaborations (객체지향의 사실과 오해: 역할, 책임, 협력 관점에서 본 객체지향)](http://wikibook.co.kr/object-orientation/). Views of this book are well-known to be both surprisingly deep and refreshing, and happily for me, quite kind for beginners like myself. Unfortunately, it was originally written in Korean, and there is seemingly no translation available in English. That is the reason why I’m trying to summarize this book in English, as clearly as possible, hoping a bigger audience can cherish this book and the ideas from it. But keep in mind that, as myself is far from being a professional to this subject, this summary may contain ambiguous, or potentially hazardous ideas and expressions. Special thanks to [Jisoo Kim](https://blog.jisoo.net), who recommended me this book, and [Dongho Jung](https://github.com/0xF4D3C0D3), who reviewed and summarized this book together.
 
 # 0. Foreword
 - The concept of *object-orientation* brings a lot of controversy in software communities, despite the fact that the concept had been widely used for decades. This phenomena tells us that there is no unified definition, or realization of the concept.
@@ -15,19 +15,19 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 	- OO is *object* oriented, not *class* or *inheritance* oriented.
 	- Object is not an independent existence of its own, but a *collaborative community to implement a function*, that each object has an adequate amount of *roles* and *responsibility*.
 - Contents for each chapters
-	- Chapter 1 argues that the essense of OO paradigm is, *autonomous objects collaborating*.
+	- Chapter 1 argues that the essence of OO paradigm is, *autonomous objects collaborating*.
 	- Chapter 2 tries to answer the fundamental question of "What is an *object*?".
-	- Chapter 3 covers *abstraction*, or more simply put, simplyfing dynamic objects to static types.
+	- Chapter 3 covers *abstraction*, or more simply put, simplifying dynamic objects to static types.
 	- Chapter 4 explains fundamental materials of OO: *roles, responsibilities, and collaborations*. Each object have a specific role for collaborations, and take responsibilities of that role.
 	- Chapter 5 emphasizes that *messages* can assure the autonomy of an object and flexibility of design.
 	- Chapter 6 shows two aspects of OO: *structure and function*. Structure is more robust to changing circumstances than function.
-	- Chapter 7 encompasses the previous chapters by looking through the implementation details written in code.
+	- Chapter 7 encompasses the earlier chapters by looking through the implementation details written in code.
 
 # 1. Collaborative Community of Objects
 - OO is not about mimicking real-world objects, but more about creating a whole new world that can satisfy users.
 - Humans are analogous to objects.
-	- Humans think and decide autonomously, objects encapsulate states and behaviors to act autonomously.
-	- Humans make both implicit and explicit contracts to collaborate for a common goal, objects message each other to collaborate for a single functionality.
+	- Humans think and decide autonomously. Objects encapsulate states and behaviors to act autonomously.
+	- Humans make promises to collaborate for a common goal. Objects message each other to collaborate for a single functionality.
 - Coffee shop analogy
 	- Customer orders coffee, cashier gets orders, barista brews coffee.
 	- Coffee is transported back from barista, cashier to customer.
@@ -35,15 +35,15 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 		- Requests are made from customer to cashier (order coffee), cashier to barista (brew coffee).
 		- Responses (coffee) are made, in the opposite direction to requests.
 	- People (objects) are granted with roles to collaborate. Roles implicitly involves responsibilities.
-		- Roles do not depend on realization of each objects, hence substitutable. (Customer doesn’t care who gets the coffee.)
-		- How to take responsibility is autonomously selected. Same request, different choice of response. (Barista brews coffee on his/her own terms.) State-dependent behavior difference, or overidden behavior (polymorphism).
+		- Roles are not about each specific instance, hence substitutable. (Customer doesn’t care who gets the coffee.)
+		- How to take responsibility is autonomously selected. Object is able to make different choice of response on same request. (Barista brews coffee on his/her own terms.) State-dependent behavior difference, or polymorphism (Ex. overridden behavior).
 		- One object can have multiple roles. (Cashier could also brew coffee. May have multiple roles depending on collaborative situations.)
 - Object should be...
-	- Open: Friendly enough to cooperate. It shouldn’t be a god object.
+	- Open: Friendly enough to cooperate. Able to message (like an open port).
 	- Autonomous: with own principles and control.
-	- To ensure openness and autonomy, object is binded with behavior (the way how object can collaborate with other objects) and state (data needed for behaviors inside the object).
-	- ex) Barista has to be friendly enough to give choices to customers (message-recievable), but customers doesn’t get to dictate how barista brews coffee (method encapsulation).
-		- Open: Customer (sender) sends a message (make a request) to the barista (reciever). Barista recieves a message from the customer (and prepare to make a response).
+	- To ensure openness and autonomy, object has behavior (the way how object can collaborate with other objects) and state (data needed for behaviors inside the object).
+	- ex) Barista has to be friendly enough to give choices to customers (message-receivable), but customers doesn’t get to dictate how barista brews coffee (method is encapsulated).
+		- Open: Customer (sender) sends a message (make a request) to the barista (receiver). Barista receives a message from the customer (and prepare to make a response).
 		- Autonomous: Customer can know *what* barista is brewing, but does not have to know *how*.
 - OO is not about classes. It is about autonomous objects messaging each other. It is about maintaining collaborations between roles with responsibilities. Classes are just tools to implement those.
 
@@ -52,42 +52,42 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 - Alice in Wonderland analogy
 	- Alice changes her height by eating various magical food, to achieve something, like go through a small door, or eat a large cake.
 - Everything is an object if it is...
-	- Perceivable (human-tractable) as a single independent (seperable to other objects) unit
+	- Perceivable (human-tractable) as a single independent (separable to other objects) unit
 	- Can determine the time of creation (instantiation)
 - Object
 	- Definition: Identifiable stuff. Could be real or abstract.
 	- Object contains state, behavior, and identifier.
 		- Object has a state which is changeable. (The height of Alice is changeable.)
 		- How object behaves changes the state of itself. (Alice changes her height by doing something.)
-			- Result of the behavior is state-dependent, and can be explained only with the state of the object.
+			- Result of the behavior is state-dependent, and can be explained with the state.
 			- Result of the behavior is dependent of the order of behaviors.
-		- No matter what state is in, Alice is uniquely indentifiable. (No matter how tall Alice is, Alice is Alice.)
+		- No matter what state is in, Alice is uniquely identifiable. (No matter how tall Alice is, Alice is Alice.)
 - State
-	- Definition: State is the total information that the object has in a given time.
-	- State consists of property (static) and property value (dynamic). Property can be attribute (value) or link (instance of correlation between other object).
+	- Definition: State is the total information that the object has at a specific time.
+	- Every aspect of a state in a specific object is the property of the object. Value of the property can be an attribute (value) or a link (instance of correlation between other object). Property is static, property value is dynamic.
+		- Linear algebra analogy: Property == Spanning set,  Every possible state == Span, A specific state == A specific point in space. Properties may not be orthogonal.
 	- Values (number, string, datetime, ...) are not objects, as they are not uniquely identifiable. But values provides ways to express the state of an object.
 	- State is an abstraction of all the previous behaviors to reduce the complexities of the real-world.
 	- Object has, and should be on full control unto its own state, hence the autonomy. State and behavior are bind to one unit: an object.
 - Behavior
 	- Definition: Doing stuff to respond to incoming messages.
-	- Behavior changes state (side effect), and behavior depends on its state.
+	- Behavior changes state (side effect), and behavior depends on the state.
 		- Behavior has two kinds of side effect: own state change (changing the property value), and propagating side effect to other object (via message request to callee object by link, or via message response to caller object).
 		- Every meaningful statement has a side effect.
-		- Object can change its state (side effect inside the object), or give out responses (side effect outside the object).
-		- If the behavior does not depend on its state (e.g. depends only on parameters, static methods), it shouldn’t be called a behavior.
 	- Behavior is the only way for an object to participate in collaborations.
 	- State encapsulation
-		- Only behaviors are visible, states are invisible (from the outside). The only way to manipulate states is via behaviors.
+		- Only behaviors are visible, states are invisible (from the outside). The only way to manipulate its states is via behaviors.
 		- As the object becomes more autonomous, it gets more intelligent. In other words, collaboration gets more flexible and concise.
 		- If states are visible, infinitely many behaviors that can manipulate states get exposed.
-- Identifier
-	- Object (reference object, entity) vs. Value (value object)
-	- Identifiability
-		- Object is uniquely identifiable. == Object has a specific property (identifier) that makes itself distinguishable to other objects.
-		- Value is not uniquely identifiable. == Value does not need an identifier.
-	- Mutability
-		- Value models unchanging amounts. Its state never changes. (Immutable state) Therefore, *equality* depends on the state of each values.
-		- State encompasses changing state depending on time. (Mutable state) Therefore, two objects are *identical* if identifier is the same.
+		- If the behavior does not depend on its state (e.g. depends only on parameters, static methods), the behavior is bad.
+	- Identifier
+		- Object (reference object, entity) vs. Value (value object)
+		- Identifiability
+			- Object is uniquely identifiable. == Object has a specific property (identifier) that makes itself distinguishable to other objects.
+			- Value is not uniquely identifiable. == Value does not need an identifier.
+		- Mutability
+			- Unchanging amounts are modeled by a *value*. Its state never changes. (Immutable state) Therefore, *equality* depends on the state of each values.
+			- Changing states (depending on time) are included within an *object*. (Mutable state) Therefore, two objects are *identical* if identifier is the same.
 - Object as a machine
 	- *Query* the state of the object (read, getter), and *command* to change the state of the object (write, setter). No other interface to interact with the object.
 - Collaboration decides what behavior (in other words, role and responsibility while collaborating) is needed. What state to manage is decided after the behavior is set.
@@ -102,7 +102,7 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 	- Dimension 1: Generalization between specific objects: Commonness chosen, difference discarded.
 	- Dimension 2: Remove the unimportant details to emphasize the important parts.
 - Levels, benefits, values of abstraction is purpose-dependent.
-- Classification: Abstraction by groups (or, concepts / types)
+- Classification: Abstraction by grouping (or by concepts or types)
 	- Each object has features that can be used to clearly differentiate between other objects.
 	- Use common features (a concept) to *classify* objects, hence reducing the complexity of perception: objects to groups.
 	- Object is an *instance* of a concept (when the concept is applicable to the object).
@@ -110,7 +110,7 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 		- Intension: Complete definition of a concept. Determines whether or not the object is of a concept.
 			- Classification of objects is essentially checking the applicability of specific concepts to each object.
 		- Extension: Set of all objects inside the concept.
-	- Choosing the common features (Dimension 1) effectively remove the unimportant details (Dimenison 2), hence the success of abstraction.
+	- Choosing the common features (Dimension 1) effectively remove the unimportant details (Dimension 2), hence the success of abstraction.
 - Responsibility-driven: Abstraction by decoupling What and How (vs. Data-driven)
 	- Datatype
 		- Computer memory is typeless; every data is represented as a bit string.
@@ -140,8 +140,8 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 # 4. Roles, Responsibilities, Collaborations
 - Overall quality depends on collaborations between objects, not on each object. Therefore, it is meaningless to think about states and behaviors without the context of collaborations.
 - Collaborations $\to$ Messages $\to$ Responsibilities
-	- Collaboration is a series of requests and reponses from a single initial request, which is to achieve a common goal.
-	- Callee recieves request from the caller, because callee has the ability and obligation to successfully respond. Therefore, requests and responses (messages) define a responsibility that each object has to undertake.
+	- Collaboration is a series of requests and responses from a single initial request, which is to achieve a common goal.
+	- Callee receives request from the caller, because callee has the ability and obligation to successfully respond. Therefore, requests and responses (messages) define a responsibility that each object has to undertake.
 	- Responsibilities are a list of services and information, which forms a public interface.
 		- Doing (service, command): doing for oneself, or initialize/control others.
 		- Knowing (information, query): knowing/deriving from oneself (innate info), or knowing about related others.
@@ -151,8 +151,9 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 - Responsibilities $\to$ Behaviors
 	- A set of responsibilities that the object has to undertake implicitly defines a role inside a collaboration. (Role is an abstraction of objects having common responsibilities)
 	- Abstraction of collaborations can be made by replacing objects into roles, like a placeholder, therefore achieving simplicity (purpose of abstraction itself), flexibility (changing objects inside a collaboration easily) and reusability (in another collaborative situation).
-	- Roles imply behavior compatability, and hence replacability among objects.
+	- Roles imply behavior compatibility, and hence substitutable among objects.
 	- Object may have more than one role, so type is usually a specialization of role.
+		- Let there be a set of objects. Object can be classified via roles (Intension: Does the object has the role or not?). Some objects can be inside the intersection (Objects who have multiple roles). Each partition of the set of the whole object can be defined as type.
 		- ex) Role: AbstractClass (Closed for modification), Type: ImplementedClass (Extended by openness of AbstractClass)
 - OO is not about concentrating on relationship between classes, as classes are a mere tool to concentrate on collaboration between objects.
 - OO is about assigning adequate responsibilities to adequate objects. Good OO practice is about thinking objects in a collaborative context.
@@ -163,7 +164,7 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 		- If some help is needed while taking the responsibility, find another object that can help.
 		- Now a large job is a collaboration between objects.
 	- Design Pattern: example designs
-		- Pre-distinguished collections of roles, responsibilities and collaborations that solves frequently occuring problems.
+		- Pre-distinguished collections of roles, responsibilities and collaborations that solves frequently occurring problems.
 	- Test-Driven Development
 		- Distinguishing roles, responsibilities and collaborations with specific tests and checking out conformity from those tests.
 		- Tests are an additional bonus, not the fundamental purpose for TDD.
@@ -197,7 +198,7 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 	- Polymorphism is ...
 		- Ability to send the same message (obligation to take the same responsibility) to different types of objects, hence different methods are chosen. (1:N relationship between messages and methods)
 		- Achieved by autonomy of each object; not with enough autonomy, behavior depends not only on message, but also on outside of the object, hence jeopardizing polymorphism.
-		- Replaceability between objects who have the same responsibilities. (Encapsulation of the type of callee from the perspective of the caller)
+		- Substitutability between objects who have the same responsibilities. (Encapsulation of the type of callee from the perspective of the caller)
 		- Achieved by transforming strong coupling between types of objects into weak coupling with messages.
 - Weak coupling of callee and caller based on messages makes the design ...
 	- Flexible == Callee can change implementations without propagating changes to the caller.
@@ -243,7 +244,7 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 	- Autonomy (Not having to care about the caller) vs. Robust against callee modification (Not having to care about the callee)
 - Some collaboration are superior than others, because it is more easily understandable, and robust to changes. Superiority is determined by autonomous responsibility (== adequate amount of responsibility spread between caller and callee by the means of abstraction/clarity).
 	- Autonomous responsibility makes collaborations simpler, as it shows intentions without the details.
-	- Responsibility (or, public interface) seperates inside and outside of the object. Moreover, autonomous responsibility *clearly* separates it, as too specific responsibility eventually shows the implementation via interface.
+	- Responsibility (or, public interface) separates inside and outside of the object. Moreover, autonomous responsibility *clearly* separates it, as too specific responsibility eventually shows the implementation via interface.
 	- Autonomous responsibility makes callee modification to not propagate outside the callee, as it minimizes interface needed.
 	- Autonomous responsibility assures flexibility and reusability of designs (collaboration situations), as the callee and caller are loosely coupled only with messages.
 	- Autonomous responsibility makes roles of objects easily understandable, as responsibilities are highly coherent, hence making the role (set of responsibilities) clear.
@@ -293,7 +294,7 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 - System as a whole, is an object, which collaborates with the user via message to satisfy the goal of the user. Therefore, functional requirements of the system is now the responsibility of the system.
 - Responsibility-driven development
 	- Use case identifies functional requirements. Functional requirements express responsibilities of the system.
-	- Domain model supplies stable structure that can accept volatile funcitonal requirements.
+	- Domain model supplies stable structure that can accept volatile functional requirements.
 	- RDD integrates those two.
 - Recursive Composition (of Smalltalk)
 	- Why split computers into data structure (state) and procedure (behavior)? Just accept computer as an object.
