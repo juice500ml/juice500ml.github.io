@@ -65,7 +65,7 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 - State
 	- Definition: State is the total information that the object has at a specific time.
 	- Every aspect of a state in a specific object is the property of the object. Value of the property can be an attribute (value) or a link (instance of correlation between other object). Property is static, property value is dynamic.
-		- Linear algebra analogy: Property == Spanning set,  Every possible state == Span, A specific state == A specific point in space. Properties may not be orthogonal.
+		- Linear algebra analogy: Property == Spanning set, Every possible state == Span, A specific state == A specific point in space, Each aspect of a state == Each projection of a point. Properties may not be orthogonal. Identifier is orthogonal to any other property.
 	- Values (number, string, datetime, ...) are not objects, as they are not uniquely identifiable. But values provides ways to express the state of an object.
 	- State is an abstraction of all the previous behaviors to reduce the complexities of the real-world.
 	- Object has, and should be on full control unto its own state, hence the autonomy. State and behavior are bind to one unit: an object.
@@ -90,26 +90,26 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 			- Changing states (depending on time) are included within an *object*. (Mutable state) Therefore, two objects are *identical* if identifier is the same.
 - Object as a machine
 	- *Query* the state of the object (read, getter), and *command* to change the state of the object (write, setter). No other interface to interact with the object.
-- Collaboration decides what behavior (in other words, role and responsibility while collaborating) is needed. What state to manage is decided after the behavior is set.
+- Collaboration decides what behavior (in other words, role and responsibility while collaborating) is needed. What state to manage should be decided after the behavior is set, as it ensures encapsulation and reusability, and makes an object collaborator rather than *an island*.
 - Real-world objects are passive. Software objects are active. They can do much more stuff than real-world objects. They acts as if they are live beings. (Anthropomorphism)
 - Real-world objects are just metaphors for software objects, minimizing the representational gap.
 
 # 3. Type and Abstraction
 - London metro analogy
 	- If you think about the purpose of the subway map, you can easily rule out the geographical accuracy, and concentrate more on showing the connection between stations effectively.
-- Use abstraction, or disintegrate (generating features) and simplify (choosing features), to make this world easier and predictable, and hence, understandable.
+- Use abstraction, or decomposition (to choose important stuff from this world) and simplification (to easily understand), to make this world easier and predictable, and hence, understandable.
 - Abstraction is ...
-	- Dimension 1: Generalization between specific objects: Commonness chosen, difference discarded.
+	- Dimension 1: Generalization among specific objects: Commonness chosen, difference discarded.
 	- Dimension 2: Remove the unimportant details to emphasize the important parts.
 - Levels, benefits, values of abstraction is purpose-dependent.
-- Classification: Abstraction by grouping (or by concepts or types)
+- Classification: Abstraction by grouping (by concepts or types)
 	- Each object has features that can be used to clearly differentiate between other objects.
 	- Use common features (a concept) to *classify* objects, hence reducing the complexity of perception: objects to groups.
 	- Object is an *instance* of a concept (when the concept is applicable to the object).
 		- Symbol: Name for a specific concept.
 		- Intension: Complete definition of a concept. Determines whether or not the object is of a concept.
 			- Classification of objects is essentially checking the applicability of specific concepts to each object.
-		- Extension: Set of all objects inside the concept.
+		- Extension: Set of all objects which satisfies the concept.
 	- Choosing the common features (Dimension 1) effectively remove the unimportant details (Dimension 2), hence the success of abstraction.
 - Responsibility-driven: Abstraction by decoupling What and How (vs. Data-driven)
 	- Datatype
@@ -119,12 +119,12 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 			- ex) Let’s define these consecutive 8 bits as *int*, and define various operations on it. Now, there is no need of knowing how *int* is stored in the memory.
 		- Datatype is a metadata to classify various bit strings, which implicitly defines what kind of operations are applicable to that bit string.
 	- Datatypes are analogous to types (of objects)
-		- Type of the object is chosen by how object operates. (Polymorphism, Duck typing, What it does)
-			- ex) Operates the same == Same responsibilities == Same message (but may have different response)
+		- Type of the object is chosen by object operations. (Polymorphism, Duck typing, What it does)
+			- ex) Operates the same == Same responsibility == Same message (but may have different response)
 		- Type of the object is regardless of internal implementations. (Encapsulation, How is it implemented)
-			- ex) Objects of the same type can handle same messages, regardless of internal data.
+			- ex) Objects of the same type can handle same messages, regardless of implementation.
 	- Responsibility-driven Design (vs. Data-driven design)
-		- Choose responsibilities (operations) first, then choose the internal data to manage the responsibilities.
+		- Choose responsibilities (operations) first, then decide the internal data to manage the responsibilities.
 - Hierarchy of types: Responsibility(behavior), not data(state), decides the hierarchy.
 	- A is a generalization of B (Dimension 2: Remove features to define A), B is a specialization of A (Dimension 1: Commonness chosen to define B).
 		- Extension of A $\supset$ Extension of B
@@ -147,11 +147,11 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 		- Knowing (information, query): knowing/deriving from oneself (innate info), or knowing about related others.
 	- Message, which the caller can send, and the callee can understand, is the only way to collaborate.
 	- Responsibility concentrates on what the object can undertake; message concentrates on the relationship between caller and callee.
-	- Mostly, while implementing a single responsibility, it gets split into multiple messages. (e.g. sequential messages, or various kinds of messages)
+	- While implementing a single responsibility, it gets converted into one or more messages. (e.g. sequential messages, or various kinds of messages)
 - Responsibilities $\to$ Behaviors
 	- A set of responsibilities that the object has to undertake implicitly defines a role inside a collaboration. (Role is an abstraction of objects having common responsibilities)
-	- Abstraction of collaborations can be made by replacing objects into roles, like a placeholder, therefore achieving simplicity (purpose of abstraction itself), flexibility (changing objects inside a collaboration easily) and reusability (in another collaborative situation).
-	- Roles imply behavior compatibility, and hence substitutable among objects.
+	- Abstraction of collaborations can be made by replacing objects into roles, like a placeholder, therefore achieving simplicity (purpose of abstraction itself), flexibility (not propagating changes of the callee to the outside) and reusability (in another collaborative situation).
+	- Roles imply behavior compatibility, and hence substitutability among objects.
 	- Object may have more than one role, so type is usually a specialization of role.
 		- Let there be a set of objects. Object can be classified via roles (Intension: Does the object has the role or not?). Some objects can be inside the intersection (Objects who have multiple roles). Each partition of the set of the whole object can be defined as type.
 		- ex) Role: AbstractClass (Closed for modification), Type: ImplementedClass (Extended by openness of AbstractClass)
@@ -175,34 +175,34 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 			- Expected collaboration of objects
 				- Verifying that the testing object has correctly collaborated with the other objects
 				- Needs stubs (inject indirect inputs, or responses from another object which affect the testing object) and mocks (handle indirect outputs, or requests done from the testing object to another object)
+				- Note. Controversy between Mockists vs. Classicists
 
 # 5. Responsibility and Message
 - Objects taking responsibility autonomously
 	- Responsibility: behaviors of objects responding to a message (which is the only way to trigger behaviors)
 		- Message triggers behavior == Message triggers responsibility
-	- Autonomy: judgement based only on own principle, behavior based only on own will
 - Level of responsibility that the object has to take has to be autonomous enough for the object to take the responsibility autonomously.
 	- Responsibilities should be abstract/comprehensive (to ensure autonomy of implementation, or, enough range of freedom for the callee to behave) and clear enough (for the intention of collaboration to be expressed clearly).
-	- If not, the callee has to depend on the orders of the caller, and hence not depending on own principles and determination, therefore impossible to take responsibility autonomously. (Callee behaves depending on incoming message, not the caller.)
+	- If not, the callee has to depend on the orders of the caller, and hence not depending on own implementation, therefore impossible to take responsibility autonomously. (Callee behaves depending on incoming message, not the caller.)
 	- Amount of abstraction/comprehensiveness needed differs by context (trade-off between abstraction/comprehensiveness and clarity), which makes OO design hard but attractive.
 		- If an object encompasses too much functionality, (The result of maximum abstraction in a qualitative sense is *doing*, in a quantitative sense is too many responsibilities) the responsibility of the object becomes ambiguous, hence failing to collaborate.
 	- Not *how*, but *what* responsibility to take.
 - Structure of message sending (how to trigger the callee object)
 	- { Callee object }.{ Message name }( { Message arguments } )
 	- ex) mad_hatter.testify(yesterday, kingdom)
-	- Message structure (Function signature) is an abstraction of all the possible requests using the message name
+	- Message structure (Function signature) is an abstraction of all the possible messages using the message name
 	- ex) .testify(yesterday, kingdom) == { .testify(190101, here), .testify(190102, there), ... }
 - Message vs. Method
 	- The object is able to receive the message and respond successfully == The object should, and is able to take the responsibility of the message
 	- How responsibility is taken is hidden from the outside of the object. Messages are the boundary of the object. Internal methods (*how*) are chosen by the callee on runtime to handle messages (*what*) from the outside caller.
 	- Polymorphism is ...
 		- Ability to send the same message (obligation to take the same responsibility) to different types of objects, hence different methods are chosen. (1:N relationship between messages and methods)
-		- Achieved by autonomy of each object; not with enough autonomy, behavior depends not only on message, but also on outside of the object, hence jeopardizing polymorphism.
 		- Substitutability between objects who have the same responsibilities. (Encapsulation of the type of callee from the perspective of the caller)
+		- Achieved by autonomy of each object; not with enough autonomy, behavior depends not only on message, but also on outside of the object, hence jeopardizing polymorphism.
 		- Achieved by transforming strong coupling between types of objects into weak coupling with messages.
 - Weak coupling of callee and caller based on messages makes the design ...
-	- Flexible == Callee can change implementations without propagating changes to the caller.
-	- Extensible == How objects collaborate (implementation of the caller on that specific collaborative situation) are easily changeable.
+	- Flexible == Callee can change implementations without propagating changes to the caller, because caller doesn’t care about callee until it understands the message.
+	- Extensible == How objects collaborate (implementation of the caller on that specific collaborative situation) are easily extensible.
 	- Reusable == Collaborations are easily reused among different contexts by switching callees.
 - Each object may be mediocre, but web of objects are more than a mere sum of them.
 - Power of OO design comes not from classes or polymorphism, but from messages. OO app is made from classes, but defined by messages.
@@ -212,9 +212,9 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 	- Functionality of an application $\to$ Responsibility of a system $\to$ Responsibility of the object which starts the collaboration $\to$ Messages toward others so that the object can take the responsibility $\to$ Choosing adequate callees that can take the part of the responsibility $\to$ Taking the required responsibility requested from the caller
 	- Message chooses the responsibility of the callee.
 	- What/Who Cycle: First, choose what to do (message, responsibility), regardless of the properties of each object. Then choose who does it (callee object), hence the responsibility is decided afterwards. == Interface Discovery @ TDD
-  - Callee object is chosen after the message is chosen, so caller cannot know the internals of the callee. Caller has no choice but to trust the callee to deal with the message.
+	- Callee object is chosen after the message is chosen, so caller cannot know the internals of the callee. Caller has no choice but to trust the callee to deal with the message.
 	- Message depending on the state of the callee is the proof for harming the autonomy. Delay the decision, and make the callee decide.
-	- Concentrating on *what*, not *how*, makes the interface of the callee smaller (lesser responsibilities), hence dependencies needed by the caller decreases.
+	- Concentrating on *what*, not *how*, makes the interface of the callee smaller $\to$ Dependencies needed by the caller decreases $\to$ Strength of the coupling between caller and callee decreases $\to$ More room for flexibility, Clear intentions
 	- Following the Law of Demeter (Tell (what to do), Don't Ask (how to do it)) has its advantages: Better encapsulation, Weak coupling, Better Autonomy, Clear intentions.
 	- Trust the message. Autonomous responsibilities will follow.
 - Characteristics of an interface
