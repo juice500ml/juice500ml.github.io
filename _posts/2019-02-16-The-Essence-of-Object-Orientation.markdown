@@ -199,8 +199,8 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 		- Ability to send the same message (obligation to take the same responsibility) to different types of objects, hence different methods are chosen. (1:N relationship between messages and methods)
 		- Substitutability between objects who have the same responsibilities. (Encapsulation of the type of callee from the perspective of the caller)
 		- Achieved by autonomy of each object; not with enough autonomy, behavior depends not only on message, but also on outside of the object, hence jeopardizing polymorphism.
-		- Achieved by transforming strong coupling between types of objects into weak coupling with messages.
-- Weak coupling of callee and caller based on messages makes the design ...
+		- Achieved by transforming strong coupling between types of objects into loose coupling with messages.
+- Loose coupling of callee and caller based on messages makes the design ...
 	- Flexible == Callee can change implementations without propagating changes to the caller, because caller doesn’t care about callee until it understands the message.
 	- Extensible == How objects collaborate (implementation of the caller on that specific collaborative situation) are easily extensible.
 	- Reusable == Collaborations are easily reused among different contexts by switching callees.
@@ -214,40 +214,39 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 	- What/Who Cycle: First, choose what to do (message, responsibility), regardless of the properties of each object. Then choose who does it (callee object), hence the responsibility is decided afterwards. == Interface Discovery @ TDD
 	- Callee object is chosen after the message is chosen, so caller cannot know the internals of the callee. Caller has no choice but to trust the callee to deal with the message.
 	- Message depending on the state of the callee is the proof for harming the autonomy. Delay the decision, and make the callee decide.
-	- Concentrating on *what*, not *how*, makes the interface of the callee smaller $\to$ Dependencies needed by the caller decreases $\to$ Strength of the coupling between caller and callee decreases $\to$ More room for flexibility, Clear intentions
-	- Following the Law of Demeter (Tell (what to do), Don't Ask (how to do it)) has its advantages: Better encapsulation, Weak coupling, Better Autonomy, Clear intentions.
+	- Law of Demeter: Tell (what to do), Don’t Ask (how to do it)
+		- Concentrating on *what*, not *how*, makes the interface of the callee smaller $\to$ Dependencies needed by the caller decreases $\to$ Strength of the coupling between caller and callee loosens $\to$ Better flexibility and encapsulation (less propagating/effectively hiding callee modifications), Clear intentions (clear message for clear collaboration), Better Autonomy (making enough room for implementation)
 	- Trust the message. Autonomous responsibilities will follow.
 - Characteristics of an interface
 	- If the user get used to the interface of an object, you don't have to know the internals to do something with the object. (Abstraction of implementation by encapsulation) ex) Driving a car
-	- Changing the internals (implementation) does not affect the end user. (Flexibility by weak coupling) ex) Changing the engine of a car
-	- If the user is used to the interface, user can also easily utilize another object with the same interface. (Reusability by weak coupling) ex) Different car, same person.
+	- Changing the internals (implementation) does not affect the end user. (Flexibility by loose coupling) ex) Changing the engine of a car
+	- If the user is familiar to the interface, user can easily utilize other objects with the same interface. (Reusability by loose coupling) ex) Different car, same person.
 - Interface is a list of digestible messages (function signatures).
-- Only difference between private (internal) and public (external) interface is that the private interface is only accessible to its own. The object has to message at oneself to request something to oneself.
-- Result of using the interface: weak coupling & information is hidden.
+- Only difference between private (internal) and public (external) interface is that the private interface is only accessible to its own. The object has to message at itself if it needs some help from itself, hence loosening coupling between its own methods.
+- Result of using the interface: loose coupling & information gets hidden.
 - Separation of public interface (externals) and implementation (internals) principle
 	- Implementation: Object's internal structure and how it works (states and methods). Everything except the public interface.
-	- Behavior: *method* of the callee to handle the incoming message
+	- Behavior: Means of the callee (*method*) to handle the incoming message
 	- Separation of stuff that can be changed (implementation) and that cannot be changed (public interface)
 		- Because software always changes: grasping every side effects of every modifications (modification propagation) is near impossible.
-		- Because it makes the object autonomous: it gives the ability to change the implementation without affecting outside.
-	- Caller and callee loosely coupled with the interface, not strongly coupled with the implementation
-	- Two viewpoints of encapsulation (Information hiding)
+		- Because it makes the object autonomous: it gives the ability to choose the method without affecting outside.
+	- Caller and callee should be loosely coupled with the interface (coupling to a type), not strongly coupled with the implementation (coupling to a specific object).
+	- Two viewpoints of encapsulation
 		- Data encapsulation: Packaging of state and behavior
 			- Prerequisite for the separation of interface and implementation
 			- Prerequisite for the object autonomy
-		- Encapsulation of private secrets
-			- Make volatile (frequently changing) stuff private to minimize interference from the outside / error propagation to the outside, hence guaranteeing autonomy.
-- Object-oriented mindset
+		- Information hiding: Hiding private secrets and frequently changeable stuff
+			- To minimize interference from the outside / error propagation to the outside, hence guaranteeing autonomy.
+- Object-oriented mindset: Autonomy (Callee not having to care about the caller) vs. Flexibility (Caller not having to care about the callee modification)
 	- *More abstract interface* (autonomous responsibility) guarantees autonomy of the callee object.
-	- *Minimal interface* (while complying with the message) exposes minimal amount of internals to the outside world, hence minimizing the effect of changing the implementation.
-	- *Awareness for the difference between interface and implementation* (strict separation between inside and outside of the object) to guarantee autonomy of the object, and to be robust against implementation changes.
-	- Autonomy (Not having to care about the caller) vs. Robust against callee modification (Not having to care about the callee)
-- Some collaboration are superior than others, because it is more easily understandable, and robust to changes. Superiority is determined by autonomous responsibility (== adequate amount of responsibility spread between caller and callee by the means of abstraction/clarity).
-	- Autonomous responsibility makes collaborations simpler, as it shows intentions without the details.
-	- Responsibility (or, public interface) separates inside and outside of the object. Moreover, autonomous responsibility *clearly* separates it, as too specific responsibility eventually shows the implementation via interface.
-	- Autonomous responsibility makes callee modification to not propagate outside the callee, as it minimizes interface needed.
-	- Autonomous responsibility assures flexibility and reusability of designs (collaboration situations), as the callee and caller are loosely coupled only with messages.
-	- Autonomous responsibility makes roles of objects easily understandable, as responsibilities are highly coherent, hence making the role (set of responsibilities) clear.
+	- *Minimal interface* (while complying with the message) exposes minimal amount of internals to the outside world, hence minimizing the effect of changing the implementation (flexibility).
+	- *Awareness for the difference between interface and implementation* (strict separation between inside and outside of the object) to guarantee both autonomy and flexibility.
+- Some collaborations are superior to others, because it is more easily understandable, and robust to changes. Superiority between those is determined by autonomous responsibility (== adequate amount of responsibility spread between caller and callee by the means of abstraction/clarity), because...
+	- Responsibility gets adequately abstracted (it shows intentions without the details), hence collborations are made simple.
+	- Private stuff that the caller doesn’t need to know gets encapsulated, hence clear separation between interface and implementation.
+	- Modification gets encapsulated inside the object, hence loose coupling between caller and callee.
+	- Callee and caller are loosely coupled only with messages, hence flexibility and reusability  of designs (collaboration situations) is achieved.
+	- High cohesion of the object (Object is bound with the responsibilities with the same purpose), hence the role of the object is easily understandable.
 
 # 6. Object Map
 - Analogy of pathfinding: two approaches for pathfinding from location A to B
