@@ -302,6 +302,39 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 - Symbol is borrowed from the concepts in the domain model, resulting narrow semantic gap, exploiting tacit knowledge that usually remains unchanged.
 - Reversibility: Domain model modifications can be deducted from the modifications of the code itself.
 
+# 7. Summing up
+- Three correlated perspectives of OO design (Ex. If class is used while designing, class can be perceived with these three perspectives. It doesn’t mean that it is perceived sequentially throughout the process.)
+	- Conceptual Perspective: Relationship between concepts inside the domain model and the types (concepts). (Ex. Class expresses type metaphorically. Type reflects the domain model perspective.)
+	- Specification Perspective: "What objects can do" (interface), in a collaborative situation. Note. Separation between interface and implementation. (Ex. Public interface of class.)
+	- Implementation Perspective: "How objects can take responsibility". (Ex. Implementation of methods and attributes of class.)
+- Steps for implementing a coffee shop analogy
+	- 1. Domain model
+		- There are five concepts in a coffee shop domain: customer, menu, menu item, barista, coffee.
+		- Classifying objects into types. Ex. americano, espresso, ... $\to$ coffee
+		- Menu item and menu cannot be separated $\to$ Containment/Composition relationship between menu item and menu. (Menu item is included in menu.)
+		- Customer has to know the menu to order $\to$ Association relationship between customer and menu.
+	- 2. Designing collaborations
+		- First message: .order_coffee(menu_name) $\to$ Coffee
+		- Customer has to take responsibility of ordering a coffee. $\to$ customer.order_coffee(menu_name)
+		- Customer doesn’t know about the menu items. $\to$ Customer has to ask another object for that responsibility: .find_menu_item(menu_name) $\to$ MenuItem
+		- Menu has to take responsibility of finding a menu item from a menu name, as menu items are included inside the menu. $\to$ menu.find_menu_item(menu_name)
+		- After customer finding out the menu item, it can request to make coffee: .make_coffee(menu_item) $\to$ Coffee
+		- Barista has to take responsibility of making coffee, as barista knows all the information about making coffee. (Barista’s knowledge == State, Barista’s techniques == Behavior) $\to$ barista.make_coffee(menu_item)
+	- 3. Coding
+		- Customer object has to know about the Menu object and the Barista object. This problem can be resolved by modifying the previously found interface of the customer: customer.order_coffee(String menu_name, Menu menu, Barista barista)
+			- Note that the interface has changed during implementation. Coding is more important than designing. Quickly start coding to get the feedback for better designs.
+		- For the Menu object to take responsibility of finding the MenuItem object, the Menu object has to manage MenuItem objects internally: Menu(List<MenuItem> items)
+			- Note that making list of MenuItem objects as an attribute of Menu object is determined while implementing, not while desigining: Seperation of interface and implementation.
+		- MenuItem has to provide operations for comparison with the String menu_name: menu_item.equals(String menu_name)
+			- Note that the operation of the MenuItem is determined while implementing, as it is near impossible to predict the shape of the interface before really collaborating. Quickly dive into implementing functions to sketch the whole collaboration. Ex. TDD
+	- Three perspectives of coffee shop implementation
+		- Conceptual perspective: Classes successfully reflect domain model’s concepts and relationship between concepts. Ex. Modify Barista code to modify how coffee is made.
+		- Specification perspective: Public interface of each classes.
+		- Implementation perspective: Methods and attributes of each classes. Modifications made to those secrets should not propagate to other outside objects.
+- Make your code to easily show those three perspectives. It is the quickest way to deal with modifications flexibly.
+	- Refer to the domain model to clearly show the conceptual perspective.
+	- Clear line between specification and implementation perspective.
+
 # References
 - Note that cited sentences may be summarized, paraphrased or rewritten. But due to limitations of myself, modifications may changed the original intention of the writer.
 - *Norman 1988*: Donald A. Norman, The Psychology of Everyday Things
