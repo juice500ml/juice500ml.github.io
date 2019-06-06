@@ -102,7 +102,7 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 	- Dimension 1: Generalization among specific objects: Commonness chosen, difference discarded.
 	- Dimension 2: Remove the unimportant details to emphasize the important parts.
 - Levels, benefits, values of abstraction is purpose-dependent.
-- Classification: Abstraction by grouping (by concepts or types)
+- Classification: Abstraction with grouping (by categories, concepts, or types)
 	- Each object has features that can be used to clearly differentiate between other objects.
 	- Use common features (a concept) to *classify* objects, hence reducing the complexity of perception: objects to groups.
 	- Object is an *instance* of a concept (when the concept is applicable to the object).
@@ -335,8 +335,49 @@ This is a summary of the book [The Essence of Object-Orientation: Roles, Respons
 	- Refer to the domain model to clearly show the conceptual perspective.
 	- Clear line between specification and implementation perspective.
 
+# Appendix: Abstraction Techniques
+- Abstraction hides specific parts of an object to lower the complexity.
+- The biggest advantage of OOP: Able to apply same abstraction techniques to each steps of analyzing, designing, and implementing a program.
+- Technique 1: Classification & Instantiation
+	- Classification is forming a category based on common features and removing the details between different objects, or in other words, applying a common concept to objects. Instantiation is generating an object from a category.
+	- Single vs. Multiple classification
+		- Single classification: Every object has a single type.
+		- Multiple classification: Some object may exist as an instance of multiple types.
+			- vs. Multiple inheritance: Type may inherit multiple types, but object must be an instance of a single type.
+	- Dynamic vs. Static classification
+		- Dynamic classification: Object may change its type throughout its lifespan.
+		- Static classification: Object is bound to a single type throughout its lifespan.
+	- Using multiple classification and dynamic classification makes analyzing the domain in a conceptual perspective easy. But majority of OO languages prohibit those two, so it is realistic only to make a sketch out of those, and then recalibrating categories to follow the single classification and static classification before the implementation.
+	- Class-based OO languages are based on Aristotle’s philosophy: there is a universal way to classify objects, as you can extract the essense of the object, and accidental attributes remains after the extraction. It concentrates on where that object is located in the taxonomy.
+	- Other OO languages doesn’t believe in that philosophy. It concentrates on what the object can do. Ex. Prototype-based OO language: Classification and Instantiation is made by copying a prototype object.
+- Technique 2: Generalization & Specialization
+	- Generaliation hides differences between categories, and concentrates on the common feature among categories. Specialization is the exact opposite.
+	- Is-a & 100% Rule [*Larman 2004*]
+		- Is-a Rule: Rule about extension - every instance of a subtype has to be included in a supertype.
+		- 100% Rule: Rule about intension - every definition of a supertype has to be 100% applicable to a subtype. Subtype has to conform to a supertype.
+	- Structural conformance vs. Behavioral conformance
+		- Structural conformance: State that the instance of the subtype has conforms to the state that the instance of the supertype has.
+		- Behavioral conformance (Liskov Substitution Principle): Behavior that the instance of the subtype has conforms to the behavior that the instance of the supertype has.
+	- Inheritance using class: Interface inheritance vs. Implementation inheritance
+		- Interface inheritance (Subtyping): Instance of a subclass can substitute instance of a superclass. Subclass and superclass has the structural or behavioral conformance relationship.
+		- Implementation inheritance (Subclassing): Instance of a subclass cannot substitute instance of a superclass. Avoiding this makes code more flexible and reusable.
+	- Delegation is a way of understanding messages in an inheritance hierarchy. By delegation, subtype can understand every message that supertype can understand.
+		- Delegation in Class-based OO: Delegation to a superclass
+		- Delegation in Prototype-based OO: Delegation to a parent object
+- Technique 3: Composition & Decomposition
+	- Composition forms a whole by hiding specifics related to parts. Decomposition splits a whole to multiple parts.
+	- Clockmaker analogy
+		- Making from scratch is far more harder than making from components. (Recursive design between the whole and the parts)
+		- Time it takes to make complex objects from simpler objects depends on the amount of interim stable structures.
+	- Composition hides the unnecessary details of parts, so it is both abstraction technique and encapsulation technique.
+	- Human instinct helps drawing a boundary dividing each objects on ambiguous situations.
+	- Composition encapsulates parts inside a whole, so it prevents cognitive overload.
+	- Composition vs. Association: Generally, there is no constraints between lifecycles of associated objects. But, as composition is a whole-to-parts relationship, every parts have to be removed with the whole.
+	- Gather highly cohesive classes into a module or a package to make a software easily understandable.
+
 # References
 - Note that cited sentences may be summarized, paraphrased or rewritten. But due to limitations of myself, modifications may changed the original intention of the writer.
 - *Norman 1988*: Donald A. Norman, The Psychology of Everyday Things
 - *Cockburn 1999*: Alistair Cockburn, Writing Effective Use Cases
 - *Fowler 2003*: UML Distilled: A Brief Guide to the Standard Object Modeling Language
+- *Larman 2004*: Applying UML and Patterns: An introduction to Object-Oriented Analysis and Design and the Unified Process
