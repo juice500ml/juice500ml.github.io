@@ -45,7 +45,7 @@ categories: system_design
 		- Load can be described with load parameters.
 		- ex. 4.6k req/s on average (Average case), over 12k req/s at peak (Extreme case)
 	- Performance
-		- ${{Resource} \over {Load}} = Performance$
+		- ${ {Resource} \over {Load}} = Performance$
 		- Metrics example: Average, Median (p50), p95, p99, p99.9
 		- Response time = Latency + Processing time
 		- Reducing response times at high percentiles (Tail latencies) is important, because it directly affects user experience. But it is difficult as percentiles increase, as the metric is easily affected by random events outside of your control.
