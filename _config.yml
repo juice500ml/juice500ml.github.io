@@ -1,9 +1,8 @@
 # External plugins
 # See http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html for making `jekyll archives` work.
-plugins:
-  - jekyll-archives # Sorry, not GitHub pages friendly!
+gem:
   - jekyll-sitemap
-  - jekyll-paginate-v2
+  - jekyll-paginate
 
 exclude:
   - "/vendor/"
@@ -24,18 +23,14 @@ logo: "/assets/logo.png"
 
 # Build settings
 markdown: kramdown
-kramdown:
-  math_engine: katex
-  math_engine_opts: {}
-
+paginate: 5
+paginate_path: "/page:num/"
 inter_post_navigation: false
 highlightjs_theme: "monokai-sublime"
 
-pagination:
-  enabled: true
-  per_page: 5
-  permalink: "/page/:num/"
-  sort_reverse: true
+kramdown:
+  math_engine: katex
+  math_engine_opts: {}
 
 # Disqus comments
 # disqus_shortname: bencentra

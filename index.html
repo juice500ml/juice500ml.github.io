@@ -1,7 +1,5 @@
 ---
 layout: default
-pagination:
-  enabled: true
 ---
 <div class="home">
 
@@ -43,14 +41,14 @@ pagination:
 	<p>
     {% if paginator.previous_page %}
 			{% if paginator.page == 2 %}
-			<a class="newer-posts" href="{{ site.baseurl }}{{ paginator.previous_page_path }}">
+			<a class="newer-posts" href="{% if site.baseurl %}{{ site.baseurl }}{% endif %}/">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square fa-stack-2x"></i>
           <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
         </span>
       </a>
 			{% else %}
-			<a class="newer-posts" href="{{ site.baseurl }}{{ paginator.next_page_path }}">
+			<a class="newer-posts" href="{{ site.baseurl }}/page{{paginator.previous_page}}">
 				<span class="fa-stack fa-lg">
 					<i class="fa fa-square fa-stack-2x"></i>
 					<i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
