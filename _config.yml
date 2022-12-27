@@ -1,16 +1,16 @@
 # External gems
 # See http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html for making `jekyll archives` work.
 gems:
+  - jekyll-archives # Sorry, not GitHub pages friendly!
   - jekyll-sitemap
-  - jekyll-paginate
+  - jekyll-paginate-v2
 
 exclude:
   - "/vendor/"
 
 # Site settings
-title: juice500ml's blog
+title: Kwanghee's blog
 subtitle: "Notes of studying random stuff."
-email: juice500ml@gmail.com
 name: Kwanghee Choi
 #description: >
 #  A simple yet classy theme for your Jekyll website or blog.
@@ -24,11 +24,18 @@ logo: "/assets/logo.png"
 
 # Build settings
 markdown: kramdown
-paginate: 5
-paginate_path: "/page:num/"
+kramdown:
+  math_engine: katex
+  math_engine_opts: {}
+
 inter_post_navigation: false
 highlightjs_theme: "monokai-sublime"
-future: true
+
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: "/page/:num/"
+  sort_reverse: true
 
 # Disqus comments
 # disqus_shortname: bencentra
@@ -65,7 +72,6 @@ descriptions:
 #     url: https://twitter.com/TheBenCentra # URL of your profile (leave blank to not display in footer)
 #     desc: Follow me on Twitter            # Description to display as link title, etc
 #     share: true                           # Include in the "Share" section of posts
-#social:
 #  - name: Twitter
 #    icon: twitter
 #    username: TheBenCentra
@@ -80,6 +86,7 @@ descriptions:
 #    desc: Friend me on Facebook
 #    share: true
 #
+social:
   - name: GitHub
     icon: github
     username: juice500ml

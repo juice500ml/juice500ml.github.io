@@ -9,14 +9,13 @@ categories: math
 # What is a Manifold?
 This is the summary of the lecture, [What is a Manifold?](https://youtube.com/playlist?list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo), by [Dr. Bijan Haney](https://www.bijanhaney.com/index.html), also known as [XylyXylyX](https://youtube.com/@XylyXylyX). The lecture primarily focuses on constructing a mathematical basis for understanding general relativity, but I was more interested in the deep learning aspect of it. So, do keep in mind that some of the content is missing.
 
-# Lecture 1. Point Set Topology and Topological Spaces
-Lecture URL:  https://www.youtube.com/watch?v=CEXSSz0gZI4
+# [Lecture 1. Point Set Topology and Topological Spaces](https://www.youtube.com/watch?v=CEXSSz0gZI4)
 
 ## Motivation
 - Consider two sets: $X = \mathbb{R}^2$ and $Y = (0, 1)$.
 	- Even though we are talking about set of points, we are implying its structure. Topology gives structure to a set of points.
 - Example structure: Metric $d(p_1, p_2)$ ($\neq$ vector space’s metric).
-	- $p_1$, $p_2$ might contain coordinates such as (x, y), but we don’t care about that. We are just defining a function $d$ that is well-defined within $\{(p_1, p_2): p_1 \in S and p_2 \in S \}$ where $S$ is the point set.
+	- $p_1$, $p_2$ might contain coordinates such as (x, y), but we don’t care about that. We are just defining a function $d$ that is well-defined within $\lbrace(p_1, p_2): p_1 \in S$ and $p_2 \in S \rbrace$ where $S$ is the point set.
 
 ## Topology?
 - Topology $T_X$ for the point set $X$: Also a set!
@@ -33,7 +32,7 @@ Lecture URL:  https://www.youtube.com/watch?v=CEXSSz0gZI4
 - Consider open sets of $\mathbb{R}^2$.
 
 ### _Usual_ Topology
-- Consider the base **open ball** $\{x: |x-p| < r\}$. For any point p, any radius r, they are all open sets!
+- Consider the base **open ball** $ \{ x: \vert x-p\vert < r \} $. For any point p, any radius r, they are all open sets!
 - But using only the current defn. Violates (1) and (2) $\to$ We need to include intersections/unions of open balls
 - Any shape can be built by correctly union-ing open balls.
 	- Example. Rectangle (because we allow infinite union-ing)
@@ -54,8 +53,7 @@ Lecture URL:  https://www.youtube.com/watch?v=CEXSSz0gZI4
 ### TL;DR: Definition of topology is arbitrary. If it satisfies the four rules, they are all topologies.
 
 
-# Lecture 2. Elementary Definitions
-Lecture URL: https://www.youtube.com/watch?v=EsF_5LoaL_8
+# [Lecture 2. Elementary Definitions](https://www.youtube.com/watch?v=EsF_5LoaL_8)
 
 ### Defn. Neighborhoods
 - For point p in X, we call S the neighborhood of p, when:
@@ -105,13 +103,12 @@ Lecture URL: https://www.youtube.com/watch?v=EsF_5LoaL_8
 - For a subset $S \subset X$, S is dense in X when:
 	- For all point $p \in X$,
 	- $p \in S$ **or** p is the limit point of S.
-	- In other words, p \in \bar{S}.
-- Example. Consider the the set of points with rational coordinates S = $\{(q_1, q_2) | q_1 \in \mathbb{Q} and q_2 \in \mathbb{Q}\}$.
-	- S is dense in the usual topology of $\mathbb{R}^2$$, because we can find an infinitely close rational number (neighborhood) for any irrational number.
+	- In other words, $p \in \bar{S}$.
+- Example. Consider the set of points with rational coordinates $S = \lbrace(q_1, q_2) \vert q_1 \in \mathbb{Q} \text{ and } q_2 \in \mathbb{Q}\rbrace$.
+	- S is dense in the usual topology of $\mathbb{R}^2$, because we can find an infinitely close rational number (neighborhood) for any irrational number.
 	- However, S is not dense in the discrete topology.
 
-# Lecture 3. Alternative Topologies and Separation
-Lecture URL: https://youtu.be/yd28dGdR7Tg
+# [Lecture 3. Alternative Topologies and Separation](https://youtu.be/yd28dGdR7Tg)
 
 ## Alternative Topologies for Intervals
 - We introduce various example topologies to understand different concepts more clearly.
@@ -167,10 +164,9 @@ Lecture URL: https://youtu.be/yd28dGdR7Tg
 - Consider the usual topological space $(\mathbb{R}^2, J)$ and the real line $L \subset \mathbb{R}^2$ on the space.
 	- Subset L induces a new usual topological space $(L, T_L)$ as all the open sets in $T_L \subset J$ (i.e., the neighbors of the boundary L) acts as an open interval.
 - Consider the topological space $(T, T_T), (S, T_S)$.
-	- The cartesian product $T \cross S$ has the topology $T_T \cross T_S$.
+	- The cartesian product $T \times S$ has the topology $T_T \times T_S$.
 
-# Lecture 4. Countability and Continuity
-Lecture URL: https://youtu.be/L1MC5GvlxPI
+# [Lecture 4. Countability and Continuity](https://youtu.be/L1MC5GvlxPI)
 
 ## Countability
 ### Motivation
@@ -218,7 +214,7 @@ Lecture URL: https://youtu.be/L1MC5GvlxPI
 - Consider the inverse mapping $f^{-1}$ and the arbitrary open set $S_Y \in T_Y$.
 - A function $f$ is continuous if the pre-image $f^{-1}(S_Y)$ is an open set in $T_X$.
 - Remark. Relation with the epsilon-delta
-	- [epsilon-side] For any $S_Y \in $T_Y$,
+	- [epsilon-side] For any $S_Y \in T_Y$,
 	- [delta-side] we need to find the tight-enough open neighborhood $S_X \in T_X$ such that $f(S_X) \subset S_Y$.
 
 ### Examples
@@ -230,11 +226,11 @@ Lecture URL: https://youtu.be/L1MC5GvlxPI
 - $T_E \to T_{CF}$: N open intervals' union ($\in T_{CF}$) maps fine to  $T_E$. Hence, $f$ is cont.
 - $T_E \to T_{LL}$: Half-closed interval [a, b) is not a closed set in $T_E$. Hence, $f$ is not cont.
 - $T_{NI}, T_{CI}, T_{CF} \to T_E$: Consider (0.1, 0.2). It fails on everything.
-- $T_{LL} \to T_E$: $f$ is cont. Recall that $T_LL$ is _finer_ to $T_E$.
+- $T_{LL} \to T_E$: $f$ is cont. Recall that $T_{LL}$ is _finer_ to $T_E$.
 - Everything else to $T_{Distinct}$: $f$ _has_ to be cont. because $T_{Distinct}$ is the finest topology.
 - $T_{Distinct} \to T_{LL}$: Consider [0.1, 0.2]. Due to the upper limit, it fails. Hence, $f$ is not cont.
 
-# Lecture 5. Compactness, Connectedness, and Topological Properties
+# [Lecture 5. Compactness, Connectedness, and Topological Properties](https://youtu.be/4wnLQdKZ4RU)
 
 ## Defn. Homeomorphism
 - Defn. $f$ is homeomorphic when:
@@ -271,13 +267,35 @@ Lecture URL: https://youtu.be/L1MC5GvlxPI
 	- However, on the donut, if it circles around the hole, it cannot be deformed into the straight path.
 
 # Lecture 6. Topological Manifolds
+### Definition of the Topological Manifold
 - We consider the topological space $(X, T_X)$ (Set with its topology)
 - with the topological properties:
 	- Hausdorff (two points separable with two disjoint open set)
 	- Second-countable (has a countable basis)
 	- Paracompact (a form of compactness; we're skipping the details)
--  which makes the space metrizable,
+-  which makes the space metrizable.
 	-  Metrizable = We can invent a metric $d$ that measure the space
-	-  $d: X \cross X \to \mathbb{R}^{+}$ (Sometimes it's $\mathbb{R}$ such as the Riemannian metric)
+	-  $d: X \times X \to \mathbb{R}^{+}$ (Sometimes it's $\mathbb{R}$ such as the Riemannian metric)
 	-  Hausdorff (to istinguish points in a very aggressive way), Second-countable & Compact (to control the space to make it useful)
+-  We denote the space **Topological Manifold**.
 
+### Motivation for the Locally Euclidean
+- $\mathbb{R}^N$ is simply a tuple of  N real numbers. So, let’s endow it with the usual topology (i.e., open ball topology), i.e., consider the topological space $(\mathbb{R}^N, T_{\mathbb{R}^N})$, which is quite rich!
+- We need to build a homeomorphism from the topological manifold to $\mathbb{R}^N$, i.e., $f: X \to \mathbb{R}^N$, to enjoy its richness.
+- Let’s enjoy the simplicity of $\mathbb{R}^N$, yet avoid requiring the extreme requirement of homeomorphism across the whole space by incorporating the idea **Locally Euclidean**!
+
+### Exploiting the locality
+- Let’s consider a space $(X, T_X)$ and its open set $U_p$, which is the neighborhood of the point $p$.
+- Note that $(U_p, T_X \vert_{U_p})$ is also a topological space: all the elements’ unions and intersections are inside $U_p$, and the total union is equal to $U_p$. We can call that it *inherited* the topology from the original space.
+- Now, consider the open set of $\mathbb{R}^N$, $S, T_{\mathbb{R}^N} \vert_S$. Now, let’s consider the homeomorphism $f: U_p \to S$, which is much easier to construct!
+- Let’s extend this further. Consider any point $p \in X$ and its corresponding point $f(p) \in \mathbb{R}^N$. It’ll be awesome if we get to design $f$ for every open neighborhood of $p$ and $f(p)$, i.e., for every subcover of the open cover of $X$.
+- If we manage to do so, we get to obtain the **coordinates**, i.e., $X$ is **locally Euclidean**.
+	- Be careful that each subcover maps to a different *copy* of $\mathbb{R}^N$, so comparing the coordinates across different subcovers won’t make any sense.
+
+### Motivating example: Earth map
+- Consider the surface of the sphere $(X, T_{\mathbb{R}^3}\vert_X)$ which inherits from the 3-dimensional space.
+	- We can easily construct $X$ by starting from the open ball $S$. The closure $\bar{S}$ will include the surface, hence let’s subtract the interior: $X=\bar{S} - S^0$.
+- Sphere is compact *but* the plane is not.
+	- Hence, we can determine that there will be no homeomorphism from $X \to \mathbb{R}^2$ (because it’ll preserve the topological properties).
+	- However, if we remove a single point from $X$, it becomes non-compact! (Consider the continuously halving subcovers example towards the *south pole*)
+- Consider any open neighborhood of the point $p$ on the sphere and its corresponding circle (open neighborhood of $f(p)$) on the plane $\mathbb{R}^2$.
