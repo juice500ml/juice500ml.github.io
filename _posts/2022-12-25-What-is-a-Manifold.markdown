@@ -266,8 +266,8 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 	- On the sphere, any path can be deformed into another path (Simply connected).
 	- However, on the donut, if it circles around the hole, it cannot be deformed into the straight path.
 
-# Lecture 6. Topological Manifolds
-### Definition of the Topological Manifold
+# [Lecture 6. Topological Manifolds](https://youtu.be/ny2u-YqGQu0)
+### Requirements for the Topological Manifold
 - We consider the topological space $(X, T_X)$ (Set with its topology)
 - with the topological properties:
 	- Hausdorff (two points separable with two disjoint open set)
@@ -277,25 +277,98 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 	-  Metrizable = We can invent a metric $d$ that measure the space
 	-  $d: X \times X \to \mathbb{R}^{+}$ (Sometimes it's $\mathbb{R}$ such as the Riemannian metric)
 	-  Hausdorff (to istinguish points in a very aggressive way), Second-countable & Compact (to control the space to make it useful)
--  We denote the space **Topological Manifold**.
+- If it's locally Euclidean, we call the space **Topological Manifold**.
 
 ### Motivation for the Locally Euclidean
-- $\mathbb{R}^N$ is simply a tuple of  N real numbers. So, let’s endow it with the usual topology (i.e., open ball topology), i.e., consider the topological space $(\mathbb{R}^N, T_{\mathbb{R}^N})$, which is quite rich!
+- $\mathbb{R}^N$ is simply a tuple of N real numbers. So, let’s endow it with the usual topology (i.e., open ball topology), i.e., consider the topological space $(\mathbb{R}^N, T_{\mathbb{R}^N})$, which is quite rich!
 - We need to build a homeomorphism from the topological manifold to $\mathbb{R}^N$, i.e., $f: X \to \mathbb{R}^N$, to enjoy its richness.
 - Let’s enjoy the simplicity of $\mathbb{R}^N$, yet avoid requiring the extreme requirement of homeomorphism across the whole space by incorporating the idea **Locally Euclidean**!
 
 ### Exploiting the locality
 - Let’s consider a space $(X, T_X)$ and its open set $U_p$, which is the neighborhood of the point $p$.
 - Note that $(U_p, T_X \vert_{U_p})$ is also a topological space: all the elements’ unions and intersections are inside $U_p$, and the total union is equal to $U_p$. We can call that it *inherited* the topology from the original space.
-- Now, consider the open set of $\mathbb{R}^N$, $S, T_{\mathbb{R}^N} \vert_S$. Now, let’s consider the homeomorphism $f: U_p \to S$, which is much easier to construct!
+- Now, consider the open set of $\mathbb{R}^N$, $S, T_{\mathbb{R}^N} \vert_S$ and the homeomorphism $f: U_p \to S$, which is much easier to construct!
 - Let’s extend this further. Consider any point $p \in X$ and its corresponding point $f(p) \in \mathbb{R}^N$. It’ll be awesome if we get to design $f$ for every open neighborhood of $p$ and $f(p)$, i.e., for every subcover of the open cover of $X$.
 - If we manage to do so, we get to obtain the **coordinates**, i.e., $X$ is **locally Euclidean**.
 	- Be careful that each subcover maps to a different *copy* of $\mathbb{R}^N$, so comparing the coordinates across different subcovers won’t make any sense.
 
-### Motivating example: Earth map
+### Classic example: Earth map
 - Consider the surface of the sphere $(X, T_{\mathbb{R}^3}\vert_X)$ which inherits from the 3-dimensional space.
 	- We can easily construct $X$ by starting from the open ball $S$. The closure $\bar{S}$ will include the surface, hence let’s subtract the interior: $X=\bar{S} - S^0$.
 - Sphere is compact *but* the plane is not.
-	- Hence, we can determine that there will be no homeomorphism from $X \to \mathbb{R}^2$ (because it’ll preserve the topological properties).
+	- Hence, we can automatically determine that there will be no homeomorphism from $X \to \mathbb{R}^2$ (because it’ll preserve the topological properties).
 	- However, if we remove a single point from $X$, it becomes non-compact! (Consider the continuously halving subcovers example towards the *south pole*)
 - Consider any open neighborhood of the point $p$ on the sphere and its corresponding circle (open neighborhood of $f(p)$) on the plane $\mathbb{R}^2$.
+	- Even though the whole sphere is not mappable to $\mathbb{R}^2$, each region is, i.e., locally homeomorphic.
+- Let's directly design the mapping:
+	- Exclude the *south pole* $Q$. Given the north pole $P$, let the neighborhood $u_P = X-Q$.
+	- Let the plane pass through the sphere's center, perpendicular to $\bar{PQ}$. Then, for any point $p$ on $u_P$, I can draw a line $\bar{pQ}$.
+	- The intersection of the line and the plane becomes the mapping $\gamma_P$.
+	- You can't map $Q$, but everything else is successfully mapped. It is also homeomorphism, i.e., easily determine its reverse.
+	- If we do the same thing by excluding $P$ and including $Q$, we can yield $\gamma_Q$.
+	- We can yield the **Atlas** $\mathcal{A} = \lbrace (u_P, \gamma_P), (u_Q, \gamma_Q) \rbrace$, which is a set of **Charts**, i.e., tuples of the **chart region** $u$ and the homeomorphic map $\gamma$.
+
+
+### Classic counterexample
+- T-shaped line inherited from $\mathbb{R}^2$
+	- ![t_shaped_line](https://juice500ml.github.io/assets/img/2022-12-25-What-is-a-Manifold-2022-12-27-17-29-07.png)
+- If we wanted to map this to $\mathbb{R}^1$, the center point's neighborhood becomes the problem. There is now way to design a homeomorphism without violation on continuity (the center point has to be inside *two* line segments, which is not possible).
+- It also fails for $\mathbb{R}^2$ due to the simple line segment. In $\mathbb{R}^2$, line segment is *not* an open set.
+- The space is not elligible for the topological manifold!
+
+# [Lecture 7. Differentiable Manifolds](https://youtu.be/g_8pcqvYyzk)
+
+- Recall. Topological manifold space $(X, T_X, \mathcal{A})$ where the atlas $\mathcal{A} = \lbrace (u_i, \gamma_i) \rbrace$. Homeomorphic mapping $\gamma$ maps to the Euclidean space $\mathbb{R}^d$ with dimension $d$, so that the point $p \in X$ is mapped to the coordinates $\gamma_i(p) = (\alpha_i^1, \cdots, \alpha_i^d)$.
+- Remark. $X$: real world, $\mathbb{R}^d$: model. We do all of our *work* on $\mathbb{R}^d$.
+
+### Transition function
+- Let $\mathcal{A} = \lbrace (u_1, \gamma_1), (u_2, \gamma_2), \cdots \rbrace$, $u_{12} = u_1 \cap u_2$.
+	- Remark. Intersections might be quite *severe*. Recall the Earth map example. Its intersection = everything except the north and the south pole.
+	- Remark. You must have overlaps because neighborhoods are open sets, and their boundaries must also be included.
+- Point $p \in u_{12}$ is mapped to both $\gamma_1(p) \in u_1, \gamma_2(p) \in u_2$ by each homeomorphisms.
+	- Remark. Connectedness is preserved, i.e., no *holes*.
+- Consider a map: $f: \gamma_1(u_{12}) \to \gamma_2(u_{12})$, or in other words, $\mathbb{R}^d \to \mathbb{R}^d$. $f = \gamma_2 \circ \gamma_1^{-1}$. We call $f$ a **transition function** which translates the coordinates from $u_1$'s corresponding space to that of $u_2$'s.
+	- Remark. $f^{-1} = \gamma_1 \circ \gamma_2^{-1}$.
+
+## Differentiable Manifold
+- Remark. It is guaranteed that $f \in C^0$ ($f$ is continuous).
+- Defn. If $f \in C^\infty$ (i.e., $f$ is a smooth function, $f$ is infinitely differentiable), we call the space **differentiable manifold** $(X, T_X, \mathcal{A})$.
+	- Remark. All differentiable manifolds are topological manifolds, but the converse is not true.
+	- Remark. We can now enjoy various tools such as multivariate calculus.
+
+
+### Defn. Compatibility of Charts
+- Charts $(u, \gamma)$ and $(v, \phi)$ is **compatible** when:
+	1. $u \cap v = \empty$
+	2. $u \cap v \neq \empty$ and both $\phi \circ \gamma^{-1}, \gamma \circ \phi^{-1}$ are smooth
+- Remark. If $X$ is a differentiable manifold, every intersecting pair of charts has a smooth transition function, i.e., compatible.
+- Consider two different atlases $\mathcal{A}, \mathcal{B}$ that are both compatible. $\mathcal{C} = \mathcal{A} \cup \mathcal{B}$.
+	- Obvious result: $\mathcal{C}$ is a valid atlas.
+	- Advanced result: $\mathcal{C}$ is a differentiable manifold when $d \le 3$. However, it cannot be guaranteed when $d \ge 5$. There are infinite number of differentiable structures on $d=4$, but finite on $d>4$.
+	- Maximal atlas: Union of all atlases where it is compatible. Does not grow bigger and compatible for any other atlas.
+	- For every maximal atlas, there is a differentiable structure.
+### Summary
+![differentiable_manifold_summary](https://juice500ml.github.io/assets/img/2022-12-25-What-is-a-Manifold-2022-12-30-15-41-50.png)
+
+# [Lecture 8. Curves, Coordinate Functions, and Diffeomorphisms](https://youtu.be/SqB23B8ZBIc)
+### Defn. Curve
+- Consider a differentiable manifold $(X, T_X, \mathcal{A})$ and any point $\lambda \in \mathbb{R}$ on the real line.
+- Let an arbitrary function $f: \mathbb{R} \to X$. We call $f$ the **curve**.
+- Remark. Its range will pass through one or more chart regions.
+- Example. Consider two overlapping charts $(u, \gamma), (v, \phi)$. Then, $\gamma \circ f, \phi \circ f: \mathbb{R} \to \mathbb{R}^d $.
+
+### Defn. Coordinate function
+- Consider a differentiable manifold $(X, T_X, \mathcal{A})$ and a chart $(u, \gamma) \in \mathcal{A}$.
+- For any $p \in X$, $\gamma(p) \in \mathbb{R}^d$. We call each function per coordinate $\gamma(p) = (\alpha^1(p), \alpha^2(p), \cdots \alpha^d(p))$ **coordinate functions** where $\alpha^i: X \to \mathbb{R}$.
+
+### Defn. Diffeomorphism
+- Consider two differentiable manifold $(X, T_X, \mathcal{A}), (Y, T_Y, \mathcal{B})$ and the function $f: X \to Y$.
+- For two charts $(u, \gamma) \in \mathcal{A}, (v, \phi) \in \mathcal{B}$, we can define $\phi \circ f \circ \gamma^{-1}: \mathbb{R}^{d_X} \to \mathbb{R}^{d_Y}$.
+- If $f$ exists where it is:
+	1. 1-to-1
+	2. Onto
+	3. Both $f, f^{-1}$ are differentiable
+- Or in other words, homeomorphic and differentiable,
+- we call $f$: diffeomorphism and $\mathcal{A}, \mathcal{B}$: diffeomorphic spaces.
+- Remark. Diffeomorphism = *Homeomorphism for differentiable manifolds*
+
