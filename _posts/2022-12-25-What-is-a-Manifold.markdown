@@ -23,13 +23,13 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 	- Open set of X = Element of the topology for the point set X
 	- $(X, T_X)$: Topological space
 - Given any sets $u_1, u_2, u_3 \in T_X$,
-	1. $u_1 \cup u2 \in T_X$ (i.e., arbitrary union, possibly infinite)
+	1. $u_1 \cup u_2 \in T_X$ (i.e., arbitrary union, possibly infinite)
 	2. $u_1 \cap u_2 \in T_X$ (i.e., finite intersections)
-	3. Null set $\in T_X$ (i.e., smallest set)
+	3. Null set $\emptyset \in T_X$ (i.e., smallest set)
 	4. $X \in T_X$ (i.e., biggest set)
 
 ## Example of Topological Spaces
-- Consider open sets of $\mathbb{R}^2$.
+Consider open sets of $\mathbb{R}^2$.
 
 ### _Usual_ Topology
 - Consider the base **open ball** $ \{ x: \vert x-p\vert < r \} $. For any point p, any radius r, they are all open sets!
@@ -71,38 +71,47 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 - Thm. Open set that contains p = Open neighborhood of p
 	- Remark. For all point in the open set, open set is the open neighborhood for each of the points.
 - For a subset $S \subset X$, p is the limit point of S if:
-	- "every open neighborhood of p" $\cup S$ is not null.
+	- For every open neighborhood $u_p$ of $p$,
+	- $u_p \cap S - \lbrace p\rbrace \neq \emptyset$.
 - Note. S doesn't need to be the open set.
 - Remark. For any boundary point p of open set S (p is not inside S but at the "boundary"), p is the limit point of S. In other words, limit point p do not need to be inside S.
+- Remark. If we assume the space $X$ is metric, then the limit point $p$ is a point which has points of $S$ other than itself, arbitrarily close to it.
+- Idea. Three edge cases:
+	1. "Edge" of $S$: It is a limit point
+	2. "Hole" (missing point) "inside" $S$: It is a limit point
+	3. "Isolated" point "outside" $S$: It is not a limit point
 
 ### Defn. Closure
 -  Given the topological space $(X, T_X)$ and the subset $S \subset X$,
 	- $\bar{S}$ (Closure of S) $ = S \cup$ "all of its limit points"
+- Idea. It fills up all the *edges and holes* of $S$. "Isolated" is already inside $S$.
 
 ### Defn. Interior
 - Point $p \in S^0$ (the interior of the set S) if:
 	- I can find a subset $u_p \subset S$ that is the open set containing p.
-- Remark. For the usual topology, the boundary point is not inside the interior, even in the case when S is the closed set.
+- Note. For the usual topology, "edge" is not inside the interior, even in the case when S is the closed set.
 - Remark. $S^0$ is always open.
 - Remark. $S^0$ is the union of all the open sets inside S.
 - Remark. S is open if and only if $S = S^0$.
-- Remark. $S^0 = {\bar{S^c}}^c$. In other words, S^0 is the complement of the closure of the complement of S.
-	- Complement of S = Outside S
-	- Closure of the complement of S: Outside S including the boundaries
-	- Complement of the closure of the complement of S: S except the boundaries
-- Remark. "Missing loner point (only a single point excluded inside the S's boundary)" inside S is also not included in $S^0$ (i.e., it is not the interior)
+- Remark. $S^0 = {\overline{S^c}}^c$. In other words, $S^0$ is the complement of the closure of the complement of S.
+	- Complement of S = Outside S (Includes "holes")
+	- Closure of the complement of S (Includes "edges")
+	- Complement of the closure of the complement of S (Excludes "edges" and "holes.")
+- Idea. All three edge cases $\notin S^0$.
 
 ### Defn. Exterior
-- Complement of its closure
-	- Idea. Boundary is not the exterior because it’s "too close" to the set.
+- Complement of its closure $\overline{S}^c$
+- Idea. Three edge cases $\notin \overline{S}^c$
+	1. "Edge" and "Hole" is not the exterior because it’s "too close" to the set $S$.
+	2. "Isolated" is not the exterior because it's not "outside" $S$.
 
 ### Defn. Boundary
-- Neither the exterior nor the interior
+- Neither the exterior nor the interior.
+- Remark. It includes all the three edge cases.
 
 ### Defn. Dense
 - For a subset $S \subset X$, S is dense in X when:
-	- For all point $p \in X$,
-	- $p \in S$ **or** p is the limit point of S.
+	- For all point $p \in X$, $p \in S$ **or** p is the limit point of S.
 	- In other words, $p \in \bar{S}$.
 - Example. Consider the set of points with rational coordinates $S = \lbrace(q_1, q_2) \vert q_1 \in \mathbb{Q} \text{ and } q_2 \in \mathbb{Q}\rbrace$.
 	- S is dense in the usual topology of $\mathbb{R}^2$, because we can find an infinitely close rational number (neighborhood) for any irrational number.
@@ -113,13 +122,13 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 ## Alternative Topologies for Intervals
 - We introduce various example topologies to understand different concepts more clearly.
 - Recall. Topologies for open interval (0, 1)
-	- Usual topology: Open interval (Euclidean topology $T_E$)
-	- "Nested interval" topology: (0, 1-1/N) where N: 2, 3, ... ($T_{NI}$)
+	- Usual topology $T_E$: Open interval (Euclidean topology)
+	- "Nested interval" topology $T_{NI}$: (0, 1-1/N) where N: 2, 3, ...
 
 ### Closed Interval Topology $T_{CI}$
 
-- Consider the topology $T_{CI}$ for the closed interval [-1, 1].
-	- Let's set the bases as half-open intervals [-1, a) and (b, 1] where $a>0, b<0$.
+- Consider the topology $T_{CI}$ for the closed interval $[-1, 1]$.
+	- Let's set the bases as half-open intervals $[-1, a)$ and $(b, 1]$ where $a>0, b<0$.
 		- Let's denote the former "lower base" and the latter "upper base."
 	- Union/Intersection within the lower/upper base is just the bigger/smaller member (same with the "Nested interval" topology).
 	- Union of the any member of the lower & upper base is always the entire set.
@@ -161,28 +170,28 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 - The most common one! Also, if you want, you can get more stronger separability than this.
 
 ### Interesting properties
-- Consider the usual topological space $(\mathbb{R}^2, J)$ and the real line $L \subset \mathbb{R}^2$ on the space.
-	- Subset L induces a new usual topological space $(L, T_L)$ as all the open sets in $T_L \subset J$ (i.e., the neighbors of the boundary L) acts as an open interval.
-- Consider the topological space $(T, T_T), (S, T_S)$.
-	- The cartesian product $T \times S$ has the topology $T_T \times T_S$.
+- Consider the usual topological space $(\mathbb{R}^2, T_E)$ and the real line $L \subset \mathbb{R}^2$ on the space.
+	- Subset L induces a new usual topological space $(L, T_L)$ as all the open sets in $T_L \subset T_E$ (i.e., the neighbors of the boundary L) acts as an open interval.
+- Consider the topological space $(U, T_U), (S, T_S)$.
+	- The cartesian product $U \times S$ has the topology $T_U \times T_S$.
 
 # [Lecture 4. Countability and Continuity](https://youtu.be/L1MC5GvlxPI)
 
 ## Countability
 ### Motivation
-- Consider the topological space $(X, J)$ and a point $p \in X$ inside the open set $S \in J$.
+- Consider the topological space $(X, T)$ and a point $p \in X$ inside the open set $S \in T$.
 - Let's define a more smaller open set $S_1 \subset S$ that is the neighbor of $p$.
 - Let's keep defining the smaller open set such that $S_{n+1} \subset S_n$.
 - The nested collection could terminate (ex. Discrete Topology), but for the open ball topology, there will be an infinite number of open sets.
 
 ### Defn. First-Countability
-- The topological space $(X, J)$ is first-countable when:
+- The topological space $(X, T)$ is first-countable when:
 	- **For every point** $p \in X$, there exist a countable open nested neighborhoods.
 - Remark. If we use rational coordinates on the usual topological space, we can build a countable nested collection such as a ball with radius 1/N, i.e., usual topological space is first-countable.
 
 ### Defn. Second-Countability
-- The topological space $(X, J)$ is second-countable when the topology has a countable base, i.e.,
-	- **For every open set** $S \in J$ can be written as $S = \cup_i b_i$ of the bases $b_i$.
+- The topological space $(X, T)$ is second-countable when the topology has a countable base, i.e.,
+	- **For every open set** $S \in T$ can be written as $S = \cup_i b_i$ of the bases $b_i$.
 - Remark. If we use rational coordinates on the usual topological space, we can define a "rational" neigborhood for every point $p \in X$, i.e., usual topological space is second-countable.
 
 ### Remarks
@@ -205,6 +214,7 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 ### TL; DR: This is why we want the manifolds to be Hausdorff & Second-countable, because, if not, weird things happen.
 
 ## Continuity
+
 ### Motivation
 - Consider a function $f: X \to Y$ where $X, Y$ is endowed to each topologies $T_X, T_Y$.
 - We want to define continuity of the function $f$.
@@ -235,7 +245,9 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 ## Defn. Homeomorphism
 - Defn. $f$ is homeomorphic when:
 	- $f$ and $f^{-1}$ is both the cont. function, 1-to-1, and onto.
-- Recall. 1-to-1 (injection): if $f(a) = f(b)$, $a=b$. Onto (surjection): Image is equal to its codomain.
+- Recall.
+	- 1-to-1 (injection): if $f(a) = f(b)$, $a=b$. In other words, if $a \neq b$, $f(a) \neq f(b)$.
+	- Onto (surjection): Image is equal to its codomain.
 - Remark. This is important because various topological properties are preserved for homeomorphisms, such as separability, connectedness, or compactness.
 - Remark. There is no sense of shape, metric, and geometry here. It is very abstract.
 
@@ -257,7 +269,7 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 - Remark. Homeomorphism $f$ preserves connectedness.
 	- For the topological space $(Y, T_Y)$ and function $f: X \to Y$, $f(G), f(H) \in T_Y$, $f(G) \cap f(H) = \emptyset$, and $f(G) \cup f(H) = Y$.
 
-### Path-connectedness
+### Defn. Path-connectedness
 - Defn. Given the arbitrary point $x, y \in X$, if I can *draw a line* between $x, y$, we call $x, y$ **path-connected**.
 	- *Draw a line* means that I can define a continuous function $f: [0, 1] \to X$ where $f(0) = x, f(1) = y$.
 - Defn. If I can path-connect arbitrary two points of X, we call X **path-connected**.
@@ -276,7 +288,7 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 -  which makes the space metrizable.
 	-  Metrizable = We can invent a metric $d$ that measure the space
 	-  $d: X \times X \to \mathbb{R}^{+}$ (Sometimes it's $\mathbb{R}$ such as the Riemannian metric)
-	-  Hausdorff (to istinguish points in a very aggressive way), Second-countable & Compact (to control the space to make it useful)
+	-  Hausdorff (to distinguish points in a very aggressive way), Second-countable & Compact (to control the space to make it useful)
 - If it's locally Euclidean, we call the space **Topological Manifold**.
 
 ### Motivation for the Locally Euclidean
@@ -302,7 +314,7 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 	- Even though the whole sphere is not mappable to $\mathbb{R}^2$, each region is, i.e., locally homeomorphic.
 - Let's directly design the mapping:
 	- Exclude the *south pole* $Q$. Given the north pole $P$, let the neighborhood $u_P = X-Q$.
-	- Let the plane pass through the sphere's center, perpendicular to $\bar{PQ}$. Then, for any point $p$ on $u_P$, I can draw a line $\bar{pQ}$.
+	- Let the plane pass through the sphere's center, perpendicular to $\overline{PQ}$. Then, for any point $p$ on $u_P$, I can draw a line $\overline{pQ}$.
 	- The intersection of the line and the plane becomes the mapping $\gamma_P$.
 	- You can't map $Q$, but everything else is successfully mapped. It is also homeomorphism, i.e., easily determine its reverse.
 	- If we do the same thing by excluding $P$ and including $Q$, we can yield $\gamma_Q$.
@@ -372,3 +384,4 @@ This is the summary of the lecture, [What is a Manifold?](https://youtube.com/pl
 - we call $f$: diffeomorphism and $\mathcal{A}, \mathcal{B}$: diffeomorphic spaces.
 - Remark. Diffeomorphism = *Homeomorphism for differentiable manifolds*
 
+# [Lecture 9. Tangent Space](https://youtu.be/zPXvE76hCgI)
