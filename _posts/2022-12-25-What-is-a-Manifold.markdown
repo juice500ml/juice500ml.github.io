@@ -279,12 +279,19 @@ Consider open sets of $\mathbb{R}^2$.
 	- However, on the donut, if it circles around the hole, it cannot be deformed into the straight path.
 
 # [Lecture 6. Topological Manifolds](https://youtu.be/ny2u-YqGQu0)
+### Paracompactness
+- **Paracompact** if every open cover has an open refinement that is locally finite.
+- A **refinement** of a cover C is a new cover D such that every set in D is contained in some set in C.
+- **Locally finite** if each point in the space has a neighbourhood that intersects only finitely many of the sets in the collection.
+- Remark. Compactness is a property that seeks to generalize the notion of a closed and bounded subset of Euclidean space by making precise the idea of a space having no "punctures" or "missing endpoints", i.e. that the space not exclude any limiting values of points.
+- Remark. Paracompactness is more of a local property while Compactness is a global property.
+
 ### Requirements for the Topological Manifold
 - We consider the topological space $(X, T_X)$ (Set with its topology)
 - with the topological properties:
 	- Hausdorff (two points separable with two disjoint open set)
 	- Second-countable (has a countable basis)
-	- Paracompact (a form of compactness; we're skipping the details)
+	- Paracompact (locally closed and bounded)
 -  which makes the space metrizable.
 	-  Metrizable = We can invent a metric $d$ that measure the space
 	-  $d: X \times X \to \mathbb{R}^{+}$ (Sometimes it's $\mathbb{R}$ such as the Riemannian metric)
@@ -385,3 +392,48 @@ Consider open sets of $\mathbb{R}^2$.
 - Remark. Diffeomorphism = *Homeomorphism for differentiable manifolds*
 
 # [Lecture 9. Tangent Space](https://youtu.be/zPXvE76hCgI)
+## Settings
+- ![setting_summary](https://juice500ml.github.io/assets/img/2022-12-25-What-is-a-Manifold-2023-01-01-20-57-42.png)
+- Consider two differentiable manifolds $(X, T_X, \mathcal{A}), (\mathbb{R}, T_\mathbb{R}, \mathcal{B})$, any chart $(u, \gamma) \in \mathcal{A}$, and a function $f: X \to \mathbb{R}$.
+	- Recall. $\gamma: X \to \mathbb{R}^d, f \circ \gamma^{-1}: \mathbb{R}^d \to X \to \mathbb{R}$.
+	- Differentiability check: Checking whether $f \in C^\infty$ or not.
+	- Note. Let $\mathcal{B} = \lbrace (v_1, \phi_1) \rbrace$. Then, $v_1 = \mathbb{R}$ and $\phi_1 = I_\mathbb{R}$, i.e., identity mapping.
+- Consider a curve $\psi: \mathbb{R} \to X$. (Let's denote $\mathbb{R}$ as $\mathbb{R}_t$ from now on to avoid confusion.)
+	- Idea. This is the *time dimension* in physics.
+	- Remark. $\gamma \circ \psi: \mathbb{R}_t \to X \to \mathbb{R}^d, f \circ \psi: \mathbb{R}_t \to X \to \mathbb{R}$.
+
+## Velocity
+- ![velocity_summary](https://juice500ml.github.io/assets/img/2022-12-25-What-is-a-Manifold-2023-01-01-21-21-50.png)
+	- We drew contours where $f$ values are the same.
+- Consider the amount of change on $f$ with respect to $t$, i.e., $d(f \circ \psi)/dt$ or $(f \circ \psi)' (t)$.
+	- It is dependent on the curve $\psi$. For example, with the different curve, it'll be totally different.
+	- Note. More *sloppy* notation $df/dt$ is often used in other literature. 
+- Consider a mapping $v_{\psi, t_0}: C^\infty(X) \to \mathbb{R}$ with the parameters $\psi$ and $t_0 \in \mathbb{R}_t$.
+- Then, $v_{\psi, t_0} (f) = (f \circ \psi)'(t_0)$.
+- This is the notion of *velocity* in physics. More formally, it's a velocity of a function $f$ when passed through by $\psi$ on a single point $t_0$.
+
+## Choosing one curve
+- ![velocity_example](https://juice500ml.github.io/assets/img/2022-12-25-What-is-a-Manifold-2023-01-01-21-26-15.png)
+- There will be an infinite varieties of derivatives based on the curve:
+	- $v_{\psi, t_0}(f) = (f \circ \psi)'(t_0), v_{\phi, t_1}(f) = (f \circ \phi)'(t_1), v_{\sigma, t_2}(f) = (f \circ \sigma)'(t_2)$.
+	- Let a point $p \in X$ where $p = \psi(t_0) = \phi (t_1) = \sigma (t_2)$.
+- Hence, let's define a set of all possible mappings $\lbrace v_{\gamma, t} \vert \gamma: \mathbb{R} \to X \rbrace$, and show that it is a vector space by proving:
+	1. (Addition) There exists a mapping $\sigma$ where $v_{\psi, t_0} (f) + v_{\phi, t_1}(f) = v_{\sigma, t_2}(f)$.
+	2. (Scalar multiplication) There exists a mapping $\sigma$ where $\alpha \cdot v_{\psi, t_0} (f) = v_{\sigma, t_2}(f)$ for any $\alpha \in \mathbb{R}$.
+
+### Proof of 1. Addition
+- Claim. $\sigma(t) = \gamma^{-1} \lbrack (\gamma \circ \psi)(t_0 + t) + (\gamma \circ \phi) (t_1 + t) - (\gamma \circ \psi)(t_0) \rbrack$.
+	- Note. It works even if we swap $\phi$ with $\psi$.
+- Observation. $\sigma(0) = \gamma^{-1}\lbrack \gamma(p) + \gamma(p) - \gamma(p) \rbrack = p$, hence $t_2 = 0$.
+- Velocity $v_{\sigma, t}(f) = (f \circ \sigma)'(0) = ((f \circ \gamma^{-1})\circ (\gamma \circ \sigma))'(0)$.
+	- Note. We're derivating with respect to $t$.
+	- Note. $\gamma \circ \sigma: \mathbb{R} \to \mathbb{R}^d, f \sigma \gamma^{-1}: \mathbb{R}^d \to \mathbb{R}$.
+- (cont.) $v_{\sigma, t}(f) =\sum_j \partial_j (f \circ \gamma^{-1}) (\gamma \circ \sigma(0)) \cdot (\gamma \circ \sigma)_j'(0)$
+	- $(\gamma \circ \sigma)_j'(0) = (\gamma \circ \psi)'_j(t_0 + 0) + (\gamma \circ \phi)'_j (t_1 + 0) - \sout{(\gamma \circ \psi)'_j(t_0)}$
+	- $\because$ Last term is not dependent on $t$.
+- (cont.) $v_{\sigma, t}(f)= \sum_j \partial_j (f \circ \gamma^{-1}) (\gamma (p)) \cdot (\gamma \circ \sigma)_j'(0) = \sum_j \partial_j (f \circ \gamma^{-1}) (\gamma (p)) \cdot \lbrack (\gamma \circ \psi)_j'(t_0) + (\gamma \circ \phi)_j'(t_1) \rbrack = (f \circ \psi)'(t_0) + (f \circ \phi)'(t_1) = v_{\psi, t_0} (f) + v_{\phi, t_1}(f).$ QED.
+	- Remark. $f$ becomes irrelevant, hence it works for an arbitrary chart. Hence, $v_{\sigma, t_2} = v_{\psi, t_0} + v_{\phi, t_1}$.
+	- Note. As $p = \psi(t_0) = \phi (t_1) = \sigma (t_2)$, we also write the above as $v_{\sigma, p} = v_{\psi, p} + v_{\phi, p}$.
+
+
+
